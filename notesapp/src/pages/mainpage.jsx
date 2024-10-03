@@ -6,6 +6,8 @@ import GroupList from "../components/GroupListComponent";
 
 const MainPage = () => {
   const [showAddNotes, setShowAddNotes] = useState(false);
+  const [groupName, setGroupName] = useState('');
+  const [groupColor, setGroupColor] = useState('');
 
   const handleClick = () => {
     setShowAddNotes(true);
@@ -14,6 +16,8 @@ const MainPage = () => {
   const handleOverlayClick = () => {
     setShowAddNotes(false);
   };
+
+
 
   return (
     <div className={styles.container}>
@@ -30,9 +34,13 @@ const MainPage = () => {
         <div className={styles.overlay} onClick={handleOverlayClick}>
           <div
             className={styles.addNotesComponent}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}  // Stop click propagation
           >
-            <AddNotes />
+            <AddNotes 
+            setGroupColor={setGroupColor}
+            setGroupName={setGroupName}
+            setShowAddNotes={setShowAddNotes}
+            />
           </div>
         </div>
       )}

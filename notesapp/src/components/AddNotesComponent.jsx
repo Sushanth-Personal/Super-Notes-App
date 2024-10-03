@@ -1,44 +1,41 @@
 import { useState } from "react";
 import styles from "./styles/AddNotesComponent.module.css";
+
 const colors = [
   "#FF0000",
   "#00FF00",
   "#0000FF",
   "#FFFF00",
   "#FF00FF",
-]; // add more colors as needed
+]; // Add more colors if needed
 
-const AddNotes = () => {
-  const [groupName, setGroupName] = useState("");
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
+const AddNotes = ({setGroupColor, setGroupName, setShowAddNotes }) => {
+  const [selectedGroup, setSelectedGroup] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
+
 
   const handleCreateGroup = () => {
-    // create a new group with the given name and color
-    // this will likely involve making an API call or updating a database
-    console.log(
-      `Creating group: ${groupName} with color: ${selectedColor}`
-    );
-  };
-  const handleColorPicked = (color) => {
-    setSelectedColor(color);
+    setShowAddNotes(false);
+    setGroupName(selectedGroup);
+    setGroupColor(selectedColor);
+
   };
 
   return (
-    <div className = {styles.container}>
+    <div className={styles.container}>
       <input
         type="text"
-        value={groupName}
-        onChange={(e) => setGroupName(e.target.value)}
+        value={selectedGroup}
+        onChange={(e) => setSelectedGroup(e.target.value)}
         placeholder="Enter group name"
       />
       <div>
-        {colors.map((color) => (
-          <button className = {styles.colorButton}
-            key={color}
+        {colors.map((color, index) => (
+          <button
+            className={styles.colorButton}
+            key={index}
             style={{ backgroundColor: color }}
-            onClick={() => {
-              handleColorPicked(color);
-            }}
+            onClick={() => setSelectedColor(color)}
           >
             {selectedColor === color ? "Selected" : ""}
           </button>
@@ -48,5 +45,4 @@ const AddNotes = () => {
     </div>
   );
 };
-
 export default AddNotes;

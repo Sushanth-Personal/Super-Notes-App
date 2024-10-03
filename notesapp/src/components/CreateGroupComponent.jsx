@@ -9,16 +9,23 @@ const colors = [
   "#FF00FF",
 ]; // Add more colors if needed
 
-const AddNotes = ({setGroupColor, setGroupName, setShowAddNotes }) => {
-  const [selectedGroup, setSelectedGroup] = useState('');
-  const [selectedColor, setSelectedColor] = useState('');
-
+const AddNotes = ({
+  setGroupColor,
+  setGroupName,
+  setShowAddNotes,
+}) => {
+  const [selectedGroup, setSelectedGroup] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [createGroupButtonClicked, setCreateGroupButtonClicked] =
+    useState(false);
 
   const handleCreateGroup = () => {
-    setShowAddNotes(false);
     setGroupName(selectedGroup);
     setGroupColor(selectedColor);
-
+    setCreateGroupButtonClicked(true);
+    if (selectedGroup && selectedColor) {
+      setShowAddNotes(false);
+    }
   };
 
   return (
@@ -41,6 +48,23 @@ const AddNotes = ({setGroupColor, setGroupName, setShowAddNotes }) => {
           </button>
         ))}
       </div>
+      {selectedColor === "" &&
+        selectedGroup === "" &&
+        createGroupButtonClicked && (
+          <p style={{ color: "red" }}>
+            Please select a color and enter a group name
+          </p>
+        )}
+      {selectedColor === "" &&
+        selectedGroup !== "" &&
+        createGroupButtonClicked && (
+          <p style={{ color: "red" }}>Please select a color</p>
+        )}
+      {selectedGroup === "" &&
+        selectedColor !== "" &&
+        createGroupButtonClicked && (
+          <p style={{ color: "red" }}>Please enter a group name</p>
+        )}
       <button onClick={handleCreateGroup}>Create Group</button>
     </div>
   );

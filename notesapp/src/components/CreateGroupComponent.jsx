@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./styles/AddNotesComponent.module.css";
+import styles from "./styles/CreateGroupComponent.module.css";
 
 const colors = [
   "#FF0000",

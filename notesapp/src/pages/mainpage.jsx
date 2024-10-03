@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./styles/mainpage.module.css";
-import AddNotes from "../components/AddNotesComponent";
+import AddNotes from "../components/CreateGroupComponent";
 import ChatBox from "../components/ChatBoxComponent";
 import GroupList from "../components/GroupListComponent";
 

@@ -9,10 +9,11 @@ const colors = [
   "#FF00FF",
 ]; // Add more colors if needed
 
-const AddNotes = ({
+const CreateGroup = ({
   setGroupColor,
   setGroupName,
   setShowAddNotes,
+  setCreatedNewGroup,
 }) => {
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
@@ -25,7 +26,15 @@ const AddNotes = ({
     setCreateGroupButtonClicked(true);
     if (selectedGroup && selectedColor) {
       setShowAddNotes(false);
+      setCreatedNewGroup(true);
     }
+    localStorage.setItem(
+      "groupData",
+      JSON.stringify({
+        groupName: selectedGroup,
+        groupColor: selectedColor,
+      })
+    );
   };
 
   return (
@@ -69,4 +78,4 @@ const AddNotes = ({
     </div>
   );
 };
-export default AddNotes;
+export default CreateGroup;

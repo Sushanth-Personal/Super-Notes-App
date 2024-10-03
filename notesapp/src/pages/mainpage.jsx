@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./styles/MainPage.module.css";
+import styles from "./styles/mainpage.module.css";
 import AddNotes from "../components/AddNotesComponent";
 import ChatBox from "../components/ChatBoxComponent";
 import GroupList from "../components/GroupListComponent";
@@ -11,7 +11,6 @@ const MainPage = () => {
     setShowAddNotes(true);
   };
 
-  
   const handleOverlayClick = () => {
     setShowAddNotes(false);
   };
@@ -29,7 +28,12 @@ const MainPage = () => {
       </div>
       {showAddNotes && (
         <div className={styles.overlay} onClick={handleOverlayClick}>
-          <AddNotes />
+          <div
+            className={styles.addNotesComponent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <AddNotes />
+          </div>
         </div>
       )}
     </div>

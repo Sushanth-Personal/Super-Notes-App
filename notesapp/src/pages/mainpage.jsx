@@ -1,8 +1,8 @@
 import { useState } from "react";
-import styles from "./styles/mainpage.module.css";
-import AddNotes from "../components/addNotes";
-import ChatBox from "../components/ChatBox";
-import GroupList from "../components/GroupList";
+import styles from "./styles/MainPage.module.css";
+import AddNotes from "../components/AddNotesComponent";
+import ChatBox from "../components/ChatBoxComponent";
+import GroupList from "../components/GroupListComponent";
 
 const MainPage = () => {
   const [showAddNotes, setShowAddNotes] = useState(false);

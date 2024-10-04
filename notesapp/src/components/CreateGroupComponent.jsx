@@ -20,22 +20,30 @@ const CreateGroup = ({
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
     useState(false);
 
-  const handleCreateGroup = () => {
-    setGroupName(selectedGroup);
-    setGroupColor(selectedColor);
-    setCreateGroupButtonClicked(true);
-    if (selectedGroup && selectedColor) {
-      setShowAddNotes(false);
-      setCreatedNewGroup(true);
-    }
-    localStorage.setItem(
-      "groupData",
-      JSON.stringify({
+    const handleCreateGroup = () => {
+      const newGroup = {
         groupName: selectedGroup,
         groupColor: selectedColor,
-      })
-    );
-  };
+        shortForm: selectedGroup.substring(0, 3).toUpperCase(), // assuming shortForm is the first 3 letters of groupName
+      };
+    
+      const existingGroups = localStorage.getItem("groupData");
+      if (existingGroups) {
+        const groups = JSON.parse(existingGroups);
+        groups.push(newGroup);
+        localStorage.setItem("groupData", JSON.stringify(groups));
+      } else {
+        localStorage.setItem("groupData", JSON.stringify([newGroup]));
+      }
+    
+      setGroupName(selectedGroup);
+      setGroupColor(selectedColor);
+      setCreateGroupButtonClicked(true);
+      if (selectedGroup && selectedColor) {
+        setShowAddNotes(false);
+        setCreatedNewGroup(true);
+      }
+    };
 
   return (
     <div className={styles.container}>

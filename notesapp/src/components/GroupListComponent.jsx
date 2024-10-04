@@ -18,8 +18,15 @@ const GroupList = ({ createdNewGroup }) => {
       {groups &&
         groups.map((group, index) => (
           <div key={index}>
-            <div >{group.groupName}</div>
-            <div >{getShortForm(group.groupName)}</div>
+            {/* <button>
+            <span>{getShortForm(group.groupName)}</span>
+            <span>{` ${group.groupName}`} </span>
+          </button> */}
+            <NotesFetchComponent
+              groupName={group.groupName}
+              groupColor={group.groupColor}
+              shortForm={getShortForm(group.groupName)}
+            />
           </div>
         ))}
     </>
@@ -27,7 +34,7 @@ const GroupList = ({ createdNewGroup }) => {
 };
 
 function getShortForm(groupName) {
-  const words = groupName.split(' ');
+  const words = groupName.split(" ");
   if (words.length === 1) {
     return words[0].charAt(0);
   } else if (words.length === 2) {

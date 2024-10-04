@@ -1,0 +1,22 @@
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  max-height: 98px;
+  width: 100%;
+  min-height: 55px;
+}
+
+.notesDisplay {
+  width: 100%;
+  min-height: 360px;
+  flex-grow: 1;
+
+}
+

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-
-const GroupList = ({ createdNewGroup }) => {
+import NotesFetchComponent from "./NotesFetchComponent";
+const GroupList = ({ createdNewGroup, setCurrentGroupName }) => {
   const [groups, setGroups] = useState([]);
+    
 
   useEffect(() => {
     if (localStorage.getItem("groupData")) {
@@ -18,14 +19,12 @@ const GroupList = ({ createdNewGroup }) => {
       {groups &&
         groups.map((group, index) => (
           <div key={index}>
-            {/* <button>
-            <span>{getShortForm(group.groupName)}</span>
-            <span>{` ${group.groupName}`} </span>
-          </button> */}
+            {/*  */}
             <NotesFetchComponent
               groupName={group.groupName}
               groupColor={group.groupColor}
               shortForm={getShortForm(group.groupName)}
+              setCurrentGroupName={setCurrentGroupName}
             />
           </div>
         ))}
@@ -43,5 +42,6 @@ function getShortForm(groupName) {
     return words[0].charAt(0) + words[1].charAt(0);
   }
 }
+
 
 export default GroupList;

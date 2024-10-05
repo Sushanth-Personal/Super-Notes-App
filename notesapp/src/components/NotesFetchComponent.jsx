@@ -1,11 +1,16 @@
-import React from 'react'
 
-const NotesFetchComponent = ({groupName, groupColor,shortForm}) => {
+const NotesFetchComponent = ({groupName, groupColor,shortForm,setCurrentGroupName}) => {
+
+  const handleClick = () => {
+    setCurrentGroupName(groupName);
+  }
   return (
     <div>
-        <div>{shortForm}</div>
-        <div>{groupName}</div>
-        <div>{groupColor}</div>
+        <button onClick={handleClick}>
+            <span>{shortForm}</span>
+            <span>{` ${groupName}`} </span>
+            <span>{groupColor}</span>
+          </button> 
     </div>
   )
 }

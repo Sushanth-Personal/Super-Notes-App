@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import NotesFetchComponent from "./NotesFetchComponent";
 const GroupList = ({ createdNewGroup, setCurrentGroupName }) => {
   const [groups, setGroups] = useState([]);
-    
 
   useEffect(() => {
     if (localStorage.getItem("groupData")) {
@@ -42,6 +41,5 @@ function getShortForm(groupName) {
     return words[0].charAt(0) + words[1].charAt(0);
   }
 }
-
 
 export default GroupList;

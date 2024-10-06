@@ -3,15 +3,15 @@ import styles from "./styles/CreateGroupComponent.module.css";
 import PropTypes from "prop-types";
 
 const colors = [
-  "#FF0000",
-  "#00FF00",
-  "#0000FF",
-  "#FFFF00",
-  "#FF00FF",
+  "#B38BFA",
+  "#FF79F2",
+  "#43E6FC",
+  "#F19576",
+  "#0047FF",
+  "#6691FF",
 ]; // Add more colors if needed
 
 const CreateGroup = ({
-
   setShowAddNotes,
   setCreatedNewGroup,
   setCurrentGroupName,
@@ -47,42 +47,59 @@ const CreateGroup = ({
 
   return (
     <div className={styles.container}>
-      <input
-        type="text"
-        value={selectedGroup}
-        onChange={(e) => setSelectedGroup(e.target.value)}
-        placeholder="Enter group name"
-      />
+      <h1>Create New Group</h1>
       <div>
-        {colors.map((color, index) => (
-          <button
-            className={styles.colorButton}
-            key={index}
-            style={{ backgroundColor: color }}
-            onClick={() => setSelectedColor(color)}
-          >
-            {selectedColor === color ? "Selected" : ""}
-          </button>
-        ))}
+        <label htmlFor="groupName">Group Name</label>
+        <input
+          name="groupName"
+          type="text"
+          value={selectedGroup}
+          onChange={(e) => setSelectedGroup(e.target.value)}
+          placeholder="Enter group name"
+          className={styles.groupNameInput}
+        />
       </div>
-      {selectedColor === "" &&
-        selectedGroup === "" &&
-        createGroupButtonClicked && (
-          <p style={{ color: "red" }}>
-            Please select a color and enter a group name
-          </p>
-        )}
-      {selectedColor === "" &&
-        selectedGroup !== "" &&
-        createGroupButtonClicked && (
-          <p style={{ color: "red" }}>Please select a color</p>
-        )}
-      {selectedGroup === "" &&
-        selectedColor !== "" &&
-        createGroupButtonClicked && (
-          <p style={{ color: "red" }}>Please enter a group name</p>
-        )}
-      <button onClick={handleCreateGroup}>Create Group</button>
+
+      <div className = {styles.colorPaletteSection}>
+        <label className = {styles.colorPalleteLabel} htmlFor="color">Choose Color</label>
+        <div  className={styles.colorPalette}>
+          {colors.map((color, index) => (
+            <button
+              className={selectedColor === color ? `${styles.colorButton} ${styles.selectedColorButton}` : styles.colorButton}
+              key={index}
+              style={{ backgroundColor: color }}
+              onClick={() => setSelectedColor(color)}
+            >
+             
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className = {styles.bottomSection}>
+        {selectedColor === "" &&
+          selectedGroup === "" &&
+          createGroupButtonClicked && (
+            <p style={{ color: "red" }}>
+              Please select a color and enter a group name
+            </p>
+          )}
+        {selectedColor === "" &&
+          selectedGroup !== "" &&
+          createGroupButtonClicked && (
+            <p style={{ color: "red" }}>Please select a color</p>
+          )}
+        {selectedGroup === "" &&
+          selectedColor !== "" &&
+          createGroupButtonClicked && (
+            <p style={{ color: "red" }}>Please enter a group name</p>
+          )}
+        <button
+          className={styles.createGroupButton}
+          onClick={handleCreateGroup}
+        >
+          Create
+        </button>
+      </div>
     </div>
   );
 };

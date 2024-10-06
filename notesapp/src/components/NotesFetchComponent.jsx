@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const NotesFetchComponent = ({
   groupName,
   groupColor,
@@ -16,6 +18,13 @@ const NotesFetchComponent = ({
       </button>
     </div>
   );
+};
+
+NotesFetchComponent.propTypes = {
+  groupName: PropTypes.string.isRequired,
+  groupColor: PropTypes.string.isRequired,
+  shortForm: PropTypes.string.isRequired,
+  setCurrentGroupName: PropTypes.func.isRequired,
 };
 
 export default NotesFetchComponent;

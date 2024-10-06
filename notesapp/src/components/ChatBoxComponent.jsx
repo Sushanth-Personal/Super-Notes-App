@@ -2,7 +2,9 @@ import TextInputComponent from "./TextInputComponent";
 import styles from "./styles/ChatBoxComponent.module.css";
 import NotesWidget from "./NotesWidget";
 import { useEffect, useState } from "react";
-const ChatBox = ({ currentGroupName = "test group" }) => {
+import PropTypes from "prop-types";
+
+const ChatBox = ({ currentGroupName }) => {
   const [notes, setNotes] = useState(() => {
     const storedNotes = localStorage.getItem("notes");
     return storedNotes
@@ -63,6 +65,17 @@ const ChatBox = ({ currentGroupName = "test group" }) => {
       </div>
     </div>
   );
+};
+
+ChatBox.propTypes = {
+  /**
+   * The name of the current group.
+   */
+  currentGroupName: PropTypes.string.isRequired,
+};
+
+ChatBox.defaultProps = {
+  currentGroupName: "test group",
 };
 
 export default ChatBox;

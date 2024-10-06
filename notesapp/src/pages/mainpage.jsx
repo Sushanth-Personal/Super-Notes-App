@@ -1,13 +1,14 @@
-import { useState } from "react";
+import {  useState } from "react";
 import styles from "./styles/mainpage.module.css";
 import CreateGroup from "../components/CreateGroupComponent";
 import ChatBox from "../components/ChatBoxComponent";
 import GroupList from "../components/GroupListComponent";
+import PropTypes from "prop-types";
 
 const MainPage = () => {
   const [showAddNotes, setShowAddNotes] = useState(false);
-  const [groupName, setGroupName] = useState("");
-  const [groupColor, setGroupColor] = useState("");
+  // const [groupName, setGroupName] = useState("");
+  // const [groupColor, setGroupColor] = useState("");
   const [createdNewGroup, setCreatedNewGroup] = useState(false);
   const [currentGroupName, setCurrentGroupName] = useState("");
 
@@ -18,7 +19,8 @@ const MainPage = () => {
 
   const handleOverlayClick = () => {
     setShowAddNotes(false);
-  };
+  }
+
 
   return (
     <div className={styles.container}>
@@ -41,16 +43,34 @@ const MainPage = () => {
             onClick={(e) => e.stopPropagation()} // Stop click propagation
           >
             <CreateGroup
-              setGroupColor={setGroupColor}
-              setGroupName={setGroupName}
+
               setShowAddNotes={setShowAddNotes}
               setCreatedNewGroup={setCreatedNewGroup}
+              setCurrentGroupName={setCurrentGroupName}
             />
           </div>
         </div>
       )}
     </div>
   );
+};
+
+MainPage.propTypes = {
+  // No props are expected for this component
+};
+
+GroupList.propTypes = {
+  createdNewGroup: PropTypes.bool.isRequired,
+  setCurrentGroupName: PropTypes.func.isRequired,
+};
+
+ChatBox.propTypes = {
+  currentGroupName: PropTypes.string.isRequired,
+};
+
+CreateGroup.propTypes = {
+  setShowAddNotes: PropTypes.func.isRequired,
+  setCreatedNewGroup: PropTypes.func.isRequired,
 };
 
 export default MainPage;

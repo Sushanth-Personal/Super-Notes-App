@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./styles/CreateGroupComponent.module.css";
+import PropTypes from "prop-types";
 
 const colors = [
   "#FF0000",
@@ -10,40 +11,39 @@ const colors = [
 ]; // Add more colors if needed
 
 const CreateGroup = ({
-  setGroupColor,
-  setGroupName,
+
   setShowAddNotes,
   setCreatedNewGroup,
+  setCurrentGroupName,
 }) => {
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
     useState(false);
 
-    const handleCreateGroup = () => {
-      const newGroup = {
-        groupName: selectedGroup,
-        groupColor: selectedColor,
-        shortForm: selectedGroup.substring(0, 3).toUpperCase(), // assuming shortForm is the first 3 letters of groupName
-      };
-    
-      const existingGroups = localStorage.getItem("groupData");
-      if (existingGroups) {
-        const groups = JSON.parse(existingGroups);
-        groups.push(newGroup);
-        localStorage.setItem("groupData", JSON.stringify(groups));
-      } else {
-        localStorage.setItem("groupData", JSON.stringify([newGroup]));
-      }
-    
-      setGroupName(selectedGroup);
-      setGroupColor(selectedColor);
-      setCreateGroupButtonClicked(true);
-      if (selectedGroup && selectedColor) {
-        setShowAddNotes(false);
-        setCreatedNewGroup(true);
-      }
+  const handleCreateGroup = () => {
+    const newGroup = {
+      groupName: selectedGroup,
+      groupColor: selectedColor,
+      shortForm: selectedGroup.substring(0, 3).toUpperCase(), // assuming shortForm is the first 3 letters of groupName
     };
+
+    const existingGroups = localStorage.getItem("groupData");
+    if (existingGroups) {
+      const groups = JSON.parse(existingGroups);
+      groups.push(newGroup);
+      localStorage.setItem("groupData", JSON.stringify(groups));
+    } else {
+      localStorage.setItem("groupData", JSON.stringify([newGroup]));
+    }
+
+    setCreateGroupButtonClicked(true);
+    if (selectedGroup && selectedColor) {
+      setShowAddNotes(false);
+      setCreatedNewGroup(true);
+      setCurrentGroupName(selectedGroup);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -86,4 +86,12 @@ const CreateGroup = ({
     </div>
   );
 };
+
+CreateGroup.propTypes = {
+  setGroupColor: PropTypes.func.isRequired,
+  setGroupName: PropTypes.func.isRequired,
+  setShowAddNotes: PropTypes.func.isRequired,
+  setCreatedNewGroup: PropTypes.func.isRequired,
+};
+
 export default CreateGroup;

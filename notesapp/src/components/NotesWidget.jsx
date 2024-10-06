@@ -1,11 +1,11 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 
-const NotesWidget = ({note,date,time}) => {
+const NotesWidget = ({ note, date, time }) => {
   console.log('NotesWidget');
   useEffect(
     ()=>{
       console.log("NotesWidget")
-      console.log(note,date,time);
     },[]
   );
   return (
@@ -17,4 +17,10 @@ const NotesWidget = ({note,date,time}) => {
   )
 }
 
-export default NotesWidget
+NotesWidget.propTypes = {
+  note: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+};
+
+export default NotesWidget;

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import NotesFetchComponent from "./NotesFetchComponent";
+
 const GroupList = ({ createdNewGroup, setCurrentGroupName }) => {
   const [groups, setGroups] = useState([]);
 
@@ -41,5 +43,14 @@ function getShortForm(groupName) {
     return words[0].charAt(0) + words[1].charAt(0);
   }
 }
+
+GroupList.propTypes = {
+  createdNewGroup: PropTypes.bool.isRequired,
+  setCurrentGroupName: PropTypes.func.isRequired,
+};
+
+GroupList.defaultProps = {
+  createdNewGroup: false,
+};
 
 export default GroupList;

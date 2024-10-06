@@ -1,6 +1,7 @@
 import styles from "./styles/TextInputComponent.module.css";
 import formatDateAndTime from "../utils/formatDateAndTime";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const TextInputComponent = ({
   setNotes,
@@ -61,6 +62,12 @@ const TextInputComponent = ({
       </button>
     </div>
   );
+};
+
+TextInputComponent.propTypes = {
+  setNotes: PropTypes.func.isRequired,
+  currentGroupName: PropTypes.string.isRequired,
+  setIsNoteSubmitted: PropTypes.func.isRequired,
 };
 
 export default TextInputComponent;

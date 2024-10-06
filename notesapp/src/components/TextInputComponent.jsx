@@ -9,23 +9,29 @@ const TextInputComponent = ({
 }) => {
   const [date, setDate] = useState([]);
   const [description, setDescription] = useState("");
-
+ 
   const handleClick = () => {
     addCurrentNote();
     setSendNotesButtonClicked(true);
+    setDescription("");
   };
 
   const addCurrentNote = () => {
+
     const existingNotes = JSON.parse(localStorage.getItem("notes")) || [];
     setDate(formatDateAndTime(Date.now()));
+
     const notes = {
       id: existingNotes.length+1,
       date: formatDateAndTime(Date.now(), "date"),
       time: formatDateAndTime(Date.now(), "time"), // assuming you have a time format option
       description: description,
-      groupName: currentGroupName, // replace with actual group name
+      groupname: currentGroupName, // replace with actual group name
     };
-    setNotes([...existingNotes, notes]);
+    
+    const updatedNotes = [...existingNotes, notes];
+  setNotes(updatedNotes);
+  localStorage.setItem("notes", JSON.stringify(updatedNotes));
   };
 
   const handleChange = (e) => {
@@ -34,7 +40,9 @@ const TextInputComponent = ({
 
   return (
     <div className={styles.container}>
-      <textarea className={styles.textArea} onChange={handleChange} />
+      <textarea className={styles.textArea} onChange={handleChange} 
+      value={description}
+      />
       <button
         className={styles.textEnterButton}
         onClick={handleClick}

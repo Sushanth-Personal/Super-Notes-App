@@ -3,6 +3,7 @@ const NotesFetchComponent = ({groupName, groupColor,shortForm,setCurrentGroupNam
 
   const handleClick = () => {
     setCurrentGroupName(groupName);
+    
   }
   return (
     <div>

@@ -2,16 +2,19 @@ import TextInputComponent from "./TextInputComponent";
 import styles from "./styles/ChatBoxComponent.module.css";
 import NotesWidget from "./NotesWidget";
 import { useEffect, useState } from "react";
-const ChatBox = ({ currentGroupName }) => {
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      description: "This is a test note",
-      date: "2023-08-01",
-      time: "10:00 AM",
-      groupname: "test group",
-    },
-  ]);
+const ChatBox = ({ currentGroupName = "test group" }) => {
+  const [notes, setNotes] = useState(() => {
+    const storedNotes = localStorage.getItem("notes");
+    return storedNotes ? JSON.parse(storedNotes) : [
+      {
+        id: 1,
+        description: "This is a test note",
+        date: "2023-08-01",
+        time: "10:00 AM",
+        groupname: "test group",
+      },
+    ];
+  });
 
   useEffect(
     ()=>{
@@ -24,19 +27,29 @@ const ChatBox = ({ currentGroupName }) => {
   const [sendNotesButtonClicked, setSendNotesButtonClicked] = useState(false);
   
 
+
+
   useEffect(() => {
-    const notes = JSON.parse(localStorage.getItem("notes"));
-    const filteredNotes = notes
-      ? notes.filter((note) => note.groupname === currentGroupName)
-      : [];
-    setFilteredNotes(filteredNotes);
-    console.log(currentGroupName);
-  },[currentGroupName]);
+    if (sendNotesButtonClicked ) {
+      console.log("Entered currentGroupName",currentGroupName);
+      
+      const notes = JSON.parse(localStorage.getItem("notes"));
+      console.log("currentNotes: ", notes);
+
+      const notesFiltered = notes.filter((notes) => {
+        return notes.groupname === currentGroupName;
+      })      
+      setFilteredNotes(notesFiltered);
+      setSendNotesButtonClicked(false);
+    }
+  }, [sendNotesButtonClicked]);
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>Header</div>
       <div className={styles.notesDisplay}>
+        {console.log("filteredNotes", filteredNotes)
+      }
         {filteredNotes.map((note) => (
           <div key={note.id}>
             <NotesWidget
@@ -52,6 +65,7 @@ const ChatBox = ({ currentGroupName }) => {
         setNotes={setNotes}
         currentGroupName={currentGroupName}
         setSendNotesButtonClicked={setSendNotesButtonClicked}
+        
         />
       </div>
     </div>

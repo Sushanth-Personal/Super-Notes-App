@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import styles from "./styles/NotesFetchComponent.module.css";
 
 const NotesFetchComponent = ({
   groupName,
@@ -10,13 +11,15 @@ const NotesFetchComponent = ({
     setCurrentGroupName(groupName);
   };
   return (
-    <div>
-      <button onClick={handleClick}>
-        <span>{shortForm}</span>
-        <span>{` ${groupName}`} </span>
-        <span>{groupColor}</span>
-      </button>
-    </div>
+    <button onClick={handleClick} className={styles.button}>
+      <span
+        className={styles.shortForm}
+        style={{ backgroundColor: groupColor }}
+      >
+        {shortForm}
+      </span>
+      <span className={styles.groupName}>{` ${groupName}`} </span>
+    </button>
   );
 };
 

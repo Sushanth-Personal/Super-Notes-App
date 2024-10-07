@@ -1,10 +1,13 @@
 const formatDateAndTime = (date = Date.now(), format = "date") => {
   const newDate = new Date(date);
-  const formattedDate = newDate.toLocaleDateString("en-US", {
-    month: "long",
+  
+  // Format date as "9 Mar 2023"
+  const formattedDate = newDate.toLocaleDateString("en-GB", {
     day: "numeric",
+    month: "short",
     year: "numeric",
   });
+  
   const formattedTime = newDate.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "numeric",

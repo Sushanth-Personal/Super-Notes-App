@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 }
@@ -17,6 +17,7 @@
   width: 100%;
   min-height: 360px;
   flex-grow: 1;
-
+  background-color: #dae5f5;
+  overflow: scroll;
+  overflow-x: hidden;
 }
-

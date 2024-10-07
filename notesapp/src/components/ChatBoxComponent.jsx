@@ -3,6 +3,7 @@ import styles from "./styles/ChatBoxComponent.module.css";
 import NotesWidget from "./NotesWidget";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { getShortForm } from "./GroupListComponent";
 
 const ChatBox = ({ currentGroupName }) => {
   const [notes, setNotes] = useState(() => {
@@ -43,7 +44,10 @@ const ChatBox = ({ currentGroupName }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>Header</div>
+      <header>
+        <div className = {styles.shortForm}>{getShortForm(currentGroupName)}</div>
+        <p>{currentGroupName}</p>
+      </header>
       <div className={styles.notesDisplay}>
         {console.log("filteredNotes", filteredNotes)}
         {filteredNotes.map((note) => (

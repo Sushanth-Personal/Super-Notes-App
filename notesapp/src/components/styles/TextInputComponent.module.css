@@ -2,7 +2,7 @@
   min-height: 255px;
   width: 100%;
   padding: 20px;
-  background-color: #fff;
+  background-color: #001F8B;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -17,17 +17,24 @@
   border-radius: 5px;
   font-size: 16px;
   resize: none;
-  padding: 0;
+  padding-left: 30px;
+  padding-top:17px;
   margin: 0;
   flex-grow: 1;
   border:none;
   outline: none;
+  font-size:1.81rem;
+  color:#9A9A9A;
+  font-family: 'Roboto';
+  font-weight: 400;
+  letter-spacing: 0.02em;
+
 }
 
 .textEnterButton {
    position: absolute;
-   bottom: 20px;
-   right: 20px;
+   bottom: 31px;
+   right: 31px;
    z-index: 1;
    background-color:transparent;
    width: 50px;

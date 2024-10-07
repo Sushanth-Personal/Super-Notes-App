@@ -7,10 +7,24 @@
   width: 100%;
 }
 
-.header {
-  max-height: 98px;
+.container header{
+  min-height: 98px;
   width: 100%;
-  min-height: 55px;
+  background-color: #001F8B;
+}
+
+.shortForm {
+  margin-left: 38px;
+  margin-right:42px;
+  width: 69px;
+  height: 69px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:white;
+  flex-shrink: 0;
 }
 
 .notesDisplay {

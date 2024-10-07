@@ -14,8 +14,7 @@
   }
   
   .groupList {
-    padding: 20px;
-    background-color: #f7f7f7; /* light gray background */
+    background-color: white; /* light gray background */
     border-right: 1px solid #ddd; /* separator between group list and chat box */
     max-width: 430px;
     width: 100%;

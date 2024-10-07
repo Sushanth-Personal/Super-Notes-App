@@ -21,6 +21,7 @@ const CreateGroup = ({
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
     useState(false);
 
+
   const handleCreateGroup = () => {
     const newGroup = {
       groupName: selectedGroup,
@@ -54,28 +55,36 @@ const CreateGroup = ({
           name="groupName"
           type="text"
           value={selectedGroup}
-          onChange={(e) => setSelectedGroup(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value.length <= 55) {
+              setSelectedGroup(e.target.value);
+            }
+          }}
           placeholder="Enter group name"
           className={styles.groupNameInput}
         />
       </div>
 
-      <div className = {styles.colorPaletteSection}>
-        <label className = {styles.colorPalleteLabel} htmlFor="color">Choose Color</label>
-        <div  className={styles.colorPalette}>
+      <div className={styles.colorPaletteSection}>
+        <label className={styles.colorPalleteLabel} htmlFor="color">
+          Choose Color
+        </label>
+        <div className={styles.colorPalette}>
           {colors.map((color, index) => (
             <button
-              className={selectedColor === color ? `${styles.colorButton} ${styles.selectedColorButton}` : styles.colorButton}
+              className={
+                selectedColor === color
+                  ? `${styles.colorButton} ${styles.selectedColorButton}`
+                  : styles.colorButton
+              }
               key={index}
               style={{ backgroundColor: color }}
               onClick={() => setSelectedColor(color)}
-            >
-             
-            </button>
+            ></button>
           ))}
         </div>
       </div>
-      <div className = {styles.bottomSection}>
+      <div className={styles.bottomSection}>
         {selectedColor === "" &&
           selectedGroup === "" &&
           createGroupButtonClicked && (

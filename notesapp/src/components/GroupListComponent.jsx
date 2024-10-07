@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import NotesFetchComponent from "./NotesFetchComponent";
+import styles from "./styles/GroupListComponent.module.css";
 
 const GroupList = ({ createdNewGroup, setCurrentGroupName }) => {
   const [groups, setGroups] = useState([]);
@@ -9,27 +10,28 @@ const GroupList = ({ createdNewGroup, setCurrentGroupName }) => {
     if (localStorage.getItem("groupData")) {
       const data = JSON.parse(localStorage.getItem("groupData"));
       setGroups(data);
-      console.log(data);
-      // print to console
     }
   }, [createdNewGroup]);
 
   return (
-    <>
-      <div>GroupList</div>
-      {groups &&
-        groups.map((group, index) => (
-          <div key={index}>
-            {/*  */}
-            <NotesFetchComponent
-              groupName={group.groupName}
-              groupColor={group.groupColor}
-              shortForm={getShortForm(group.groupName)}
-              setCurrentGroupName={setCurrentGroupName}
-            />
-          </div>
-        ))}
-    </>
+    <div className={styles.container}>
+      <h1 className = {styles.heading}>Pocket Notes</h1>
+      <div className = {styles.notesFetchContainer}>
+        
+        {groups &&
+          groups.map((group, index) => (
+            <div className = {styles.notesFetchComponent} key={index}>
+              {/*  */}
+              <NotesFetchComponent
+                groupName={group.groupName}
+                groupColor={group.groupColor}
+                shortForm={getShortForm(group.groupName)}
+                setCurrentGroupName={setCurrentGroupName}
+              />
+            </div>
+          ))}
+      </div>
+    </div>
   );
 };
 

@@ -22,15 +22,21 @@
   }
   
   .addNotes {
+    width: 93px;
+    height: 93px;
     position: absolute; /* fixed position */
     bottom: 20px; /* 20px from the bottom */
     right: 20px; /* 20px from the right */
     z-index: 1; /* bring to front */
-    background-color: #4CAF50; /* green background */
+    background-color: #16008B; /* green background */
     color: #fff; /* white text */
     padding: 10px;
     border-radius: 50%; /* circular shape */
     cursor: pointer; /* pointer cursor */
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .addNotes:hover {

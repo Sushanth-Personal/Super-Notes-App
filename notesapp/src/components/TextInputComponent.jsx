@@ -1,17 +1,17 @@
 import styles from "./styles/TextInputComponent.module.css";
 import formatDateAndTime from "../utils/formatDateAndTime";
-import { useState } from "react";
+import { useState ,useContext} from "react";
 import PropTypes from "prop-types";
 import GreyButton from "../assets/GreyButton.png";
 import BlueButton from "../assets/BlueButton.png";
+import { Context } from "../pages/mainpage";
 
 const TextInputComponent = ({
   setNotes,
-  currentGroupName,
   setIsNoteSubmitted,
 }) => {
   const [description, setDescription] = useState("");
-
+  const {selectedGroup} = useContext(Context);
   const handleClick = () => {
     if(description.trim() !== "") {
     addCurrentNote();
@@ -29,7 +29,7 @@ const TextInputComponent = ({
       date: formatDateAndTime(Date.now(), "date"),
       time: formatDateAndTime(Date.now(), "time"),
       description: description.trim(),
-      groupname: currentGroupName,
+      groupname: selectedGroup,
     };
 
     const updatedNotes = [...existingNotes, newNote];
@@ -70,7 +70,6 @@ const TextInputComponent = ({
 
 TextInputComponent.propTypes = {
   setNotes: PropTypes.func.isRequired,
-  currentGroupName: PropTypes.string.isRequired,
   setIsNoteSubmitted: PropTypes.func.isRequired,
 };
 

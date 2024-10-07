@@ -1,14 +1,17 @@
 import PropTypes from "prop-types";
 import styles from "./styles/NotesFetchComponent.module.css";
-
+import { Context } from "../pages/mainpage";
+import { useContext } from "react";
 const NotesFetchComponent = ({
   groupName,
   groupColor,
   shortForm,
-  setCurrentGroupName,
 }) => {
+
+  const { setSelectedGroup , setSelectedColor} = useContext(Context);
   const handleClick = () => {
-    setCurrentGroupName(groupName);
+    setSelectedGroup(groupName);
+    setSelectedColor(groupColor);
   };
   return (
     <button onClick={handleClick} className={styles.button}>
@@ -27,7 +30,6 @@ NotesFetchComponent.propTypes = {
   groupName: PropTypes.string.isRequired,
   groupColor: PropTypes.string.isRequired,
   shortForm: PropTypes.string.isRequired,
-  setCurrentGroupName: PropTypes.func.isRequired,
 };
 
 export default NotesFetchComponent;

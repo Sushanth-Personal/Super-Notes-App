@@ -1,11 +1,17 @@
 import TextInputComponent from "./TextInputComponent";
 import styles from "./styles/ChatBoxComponent.module.css";
 import NotesWidget from "./NotesWidget";
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState, useContext } from "react";
 import { getShortForm } from "./GroupListComponent";
+import { Context } from "../pages/mainpage";
 
-const ChatBox = ({ currentGroupName }) => {
+
+const ChatBox = () => {
+  const {
+    selectedGroup,
+    selectedColor,
+
+  } = useContext(Context);
   const [notes, setNotes] = useState(() => {
     const storedNotes = localStorage.getItem("notes");
     return storedNotes
@@ -36,17 +42,19 @@ const ChatBox = ({ currentGroupName }) => {
     console.log("currentNotes: ", notes);
 
     const notesFiltered = notes.filter((notes) => {
-      return notes.groupname === currentGroupName;
+      return notes.groupname === selectedGroup;
     });
     setFilteredNotes(notesFiltered);
     setIsNoteSubmitted(false);
-  }, [isNoteSubmitted, currentGroupName]);
+  }, [isNoteSubmitted, selectedGroup]);
 
   return (
     <div className={styles.container}>
       <header>
-        <div className = {styles.shortForm}>{getShortForm(currentGroupName)}</div>
-        <p>{currentGroupName}</p>
+        <div style = {{backgroundColor: selectedColor}} className={styles.shortForm}>
+          {getShortForm(selectedGroup)}
+        </div>
+        <p>{selectedGroup}</p>
       </header>
       <div className={styles.notesDisplay}>
         {console.log("filteredNotes", filteredNotes)}
@@ -63,7 +71,7 @@ const ChatBox = ({ currentGroupName }) => {
       <div className={styles.TextInputComponent}>
         <TextInputComponent
           setNotes={setNotes}
-          currentGroupName={currentGroupName}
+          selectedGroup={selectedGroup}
           setIsNoteSubmitted={setIsNoteSubmitted}
         />
       </div>
@@ -71,15 +79,5 @@ const ChatBox = ({ currentGroupName }) => {
   );
 };
 
-ChatBox.propTypes = {
-  /**
-   * The name of the current group.
-   */
-  currentGroupName: PropTypes.string.isRequired,
-};
-
-ChatBox.defaultProps = {
-  currentGroupName: "test group",
-};
 
 export default ChatBox;

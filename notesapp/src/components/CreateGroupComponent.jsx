@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "./styles/CreateGroupComponent.module.css";
 import PropTypes from "prop-types";
+import { Context } from "../pages/mainpage";
 
 const colors = [
   "#B38BFA",
@@ -14,13 +15,16 @@ const colors = [
 const CreateGroup = ({
   setShowAddNotes,
   setCreatedNewGroup,
-  setCurrentGroupName,
+  
 }) => {
-  const [selectedGroup, setSelectedGroup] = useState("");
-  const [selectedColor, setSelectedColor] = useState("");
+  const {
+    selectedGroup,
+    setSelectedGroup,
+    selectedColor,
+    setSelectedColor,
+  } = useContext(Context);
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
     useState(false);
-
 
   const handleCreateGroup = () => {
     const newGroup = {
@@ -42,7 +46,6 @@ const CreateGroup = ({
     if (selectedGroup && selectedColor) {
       setShowAddNotes(false);
       setCreatedNewGroup(true);
-      setCurrentGroupName(selectedGroup);
     }
   };
 

@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import NotesFetchComponent from "./NotesFetchComponent";
 import styles from "./styles/GroupListComponent.module.css";
 
-const GroupList = ({ createdNewGroup, setCurrentGroupName }) => {
+
+const GroupList = ({ createdNewGroup }) => {
+
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
@@ -26,7 +28,6 @@ const GroupList = ({ createdNewGroup, setCurrentGroupName }) => {
                 groupName={group.groupName}
                 groupColor={group.groupColor}
                 shortForm={getShortForm(group.groupName)}
-                setCurrentGroupName={setCurrentGroupName}
               />
             </div>
           ))}
@@ -48,7 +49,6 @@ function getShortForm(groupName) {
 
 GroupList.propTypes = {
   createdNewGroup: PropTypes.bool.isRequired,
-  setCurrentGroupName: PropTypes.func.isRequired,
 };
 
 GroupList.defaultProps = {

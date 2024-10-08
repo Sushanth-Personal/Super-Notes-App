@@ -20,8 +20,18 @@
 }
 
 .button:hover {
+  background-color: rgba(47, 47, 47, 0.07);
+  width: 100%;
+}
+
+.buttonSelected{
   background-color: rgba(47, 47, 47, 0.17);
   width: 100%;
+  border: none;
+}
+.buttonSelected:hover{
+  background-color: rgba(47, 47, 47, 0.17);
+
 }
 
 .shortForm {
@@ -37,4 +47,14 @@
   background-color: seagreen;
   color:white;
   flex-shrink: 0;
+}
+
+@media screen and (max-width: 768px) {    
+  .button{
+    font-size: 18px;
+  }
+  .shortForm{
+    width: 62px;
+    height: 62px;
+  }
 }

@@ -16,7 +16,6 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
   const {
     selectedGroup,
     setSelectedGroup,
-    selectedColor,
     setSelectedColor,
   } = useContext(Context);
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
@@ -101,19 +100,19 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
         {groupColor === "" &&
           groupName === "" &&
           createGroupButtonClicked && (
-            <p style={{ color: "red" }}>
+            <p className = {styles.errorMessage} style={{ color: "red" }}>
               Please select a color and enter a group name
             </p>
           )}
         {groupColor === "" &&
           groupName !== "" &&
           createGroupButtonClicked && (
-            <p style={{ color: "red" }}>Please select a color</p>
+            <p className = {styles.errorMessage} style={{ color: "red" }}>Please select a color</p>
           )}
         {groupName === "" &&
           groupColor !== "" &&
           createGroupButtonClicked && (
-            <p style={{ color: "red" }}>Please enter a group name</p>
+            <p className = {styles.errorMessage} style={{ color: "red" }}>Please enter a group name</p>
           )}
         <button
           className={styles.createGroupButton}

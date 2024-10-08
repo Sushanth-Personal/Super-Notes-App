@@ -9,7 +9,9 @@
     font-family: 'Roboto';
     padding:28px 24px;
   }
-  
+  .descriptionText {
+    white-space: pre-wrap;
+  }
   article{
     display: flex;
     flex-direction: column;

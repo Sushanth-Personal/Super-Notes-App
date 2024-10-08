@@ -1,9 +1,10 @@
-import {  createContext, useState } from "react";
+import { createContext, useState } from "react";
 import styles from "./styles/mainpage.module.css";
 import CreateGroup from "../components/CreateGroupComponent";
 import ChatBox from "../components/ChatBoxComponent";
 import GroupList from "../components/GroupListComponent";
 import PropTypes from "prop-types";
+import { useMediaQuery } from "react-responsive";
 
 export const Context = createContext();
 
@@ -12,6 +13,7 @@ const MainPage = () => {
   const [createdNewGroup, setCreatedNewGroup] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const handleClick = () => {
     setShowAddNotes(true);
@@ -20,36 +22,45 @@ const MainPage = () => {
 
   const handleOverlayClick = () => {
     setShowAddNotes(false);
-  }
-
+  };
 
   return (
-    <Context.Provider value ={{selectedGroup, setSelectedGroup, selectedColor, setSelectedColor}}>
+    <Context.Provider
+      value={{
+        selectedGroup,
+        setSelectedGroup,
+        selectedColor,
+        setSelectedColor,
+      }}
+    >
       <div className={styles.container}>
         <div className={styles.groupList}>
-          <GroupList
-            createdNewGroup={createdNewGroup}
-          />
+          <GroupList createdNewGroup={createdNewGroup} />
           <button className={styles.addNotes} onClick={handleClick}>
             +
           </button>
         </div>
-        <div className={styles.chatBox}>
-          <ChatBox />
-        </div>
-        {showAddNotes && (
-          <div className={styles.overlay} onClick={handleOverlayClick}>
-            <div
-              className={styles.addNotesComponent}
-              onClick={(e) => e.stopPropagation()} // Stop click propagation
-            >
-              <CreateGroup
-                setShowAddNotes={setShowAddNotes}
-                setCreatedNewGroup={setCreatedNewGroup}
-              />
+        {!isMobile && (
+          
+            <div className={styles.chatBox}>
+              <ChatBox />
             </div>
-          </div>
+         
         )}
+            {showAddNotes && (
+              <div className={styles.overlay} onClick={handleOverlayClick}>
+                <div
+                  className={styles.addNotesComponent}
+                  onClick={(e) => e.stopPropagation()} // Stop click propagation
+                >
+                  <CreateGroup
+                    setShowAddNotes={setShowAddNotes}
+                    setCreatedNewGroup={setCreatedNewGroup}
+                  />
+                </div>
+              </div>
+            )}
+      
       </div>
     </Context.Provider>
   );
@@ -62,8 +73,6 @@ MainPage.propTypes = {
 GroupList.propTypes = {
   createdNewGroup: PropTypes.bool.isRequired,
 };
-
-
 
 CreateGroup.propTypes = {
   setShowAddNotes: PropTypes.func.isRequired,

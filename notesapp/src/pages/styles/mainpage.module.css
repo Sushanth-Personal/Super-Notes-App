@@ -25,8 +25,8 @@
     width: 93px;
     height: 93px;
     position: absolute; /* fixed position */
-    bottom: 20px; /* 20px from the bottom */
-    right: 20px; /* 20px from the right */
+    bottom: 24px; /* 20px from the bottom */
+    right: 25px; /* 20px from the right */
     z-index: 1; /* bring to front */
     background-color: #16008B; /* green background */
     color: #fff; /* white text */
@@ -40,7 +40,7 @@
   }
   
   .addNotes:hover {
-    background-color: #3e8e41; /* darker green on hover */
+    background-color:  #2404d7; /* darker green on hover */
   }
   
   .chatBox {
@@ -64,4 +64,20 @@
   .addNotesComponent{
     position: absolute;
     z-index: 2;
+  }
+
+  @media screen and (max-width: 768px) {
+    .addNotes{
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      font-size: 65px;
+      right: 25px;
+      bottom: 24px;
+    }
+
+    .overlay{
+      justify-content: flex-start;
+    }
+
   }

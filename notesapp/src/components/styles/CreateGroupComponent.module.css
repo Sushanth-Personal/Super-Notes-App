@@ -1,101 +1,218 @@
-.container {
-  width: 740px;
-  min-height: 317px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  font-weight: 500;
-  font-family: "Roboto";
-  font-size: 27px;
-  letter-spacing: 0.035em;
-  line-height: 43.75px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
+@media screen and (min-width: 768px) {
+  .container {
+    width: 740px;
+
+    min-height: 317px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+    font-family: "Roboto";
+    font-size: 27px;
+    letter-spacing: 0.035em;
+    line-height: 43.75px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .container h1 {
+    font-size: 29px;
+    margin-top: 35px;
+    margin-left: 51px;
+  }
+
+  .groupNameInput {
+    width: 435px;
+    height: 51px;
+    border-radius: 22px;
+    border: 2px solid #cccccc;
+    margin-left: 42px;
+    margin-top: 18px;
+    padding: 28px;
+    font-family: "Roboto";
+    color: #979797;
+    font-size: 23px;
+  }
+
+  .colorButton {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 6px;
+    border: none;
+    cursor: pointer;
+    transform-origin: center; /* add this line */
+  }
+
+  .colorButton:hover {
+    transform: scale(1.1);
+  }
+
+  .colorButton:active {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .selectedColorButton {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+  }
+  .colorPalette {
+    margin-left: 49px;
+  }
+
+  .colorPaletteSection {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .createGroupButton {
+    width: 154px;
+    height: 38px;
+    background-color: #001f8b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 11px;
+    margin-right: 27px;
+    margin-left: 42px;
+  }
+
+  .bottomSection {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .bottomSection p {
+    font-size: 21px;
+  }
+
+  label {
+    margin-left: 51px;
+  }
 }
 
-.container h1 {
-  font-size: 29px;
-  margin-top: 35px;
-  margin-left: 51px;
-}
+@media screen and (max-width: 767px) {
+  .container {
+    width: 284px;
+    height: 211px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+    font-family: "Roboto";
+    letter-spacing: 0.035em;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 38px;
+    margin-right: 38px;
+  }
 
-.groupNameInput {
-  width: 435px;
-  height: 51px;
-  border-radius: 22px;
-  border: 2px solid #cccccc;
-  margin-left: 42px;
-  margin-top: 18px;
-  padding: 28px;
-  font-family: "Roboto";
-  color: #979797;
-  font-size: 23px;
-}
+  .container h1 {
+    font-size: 18px;
+    line-height: 29px;
+    margin-top: 40px;
+    margin-bottom: 14px;
+    margin-left: 19px;
+  }
 
-.colorButton {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin: 6px;
-  border: none;
-  cursor: pointer;
-  transform-origin: center; /* add this line */
-}
+  .groupNameInput {
+    width: 150px;
+    height: 23px;
+    border-radius: 22px;
+    border: 2px solid #cccccc;
 
-.colorButton:hover {
-  transform: scale(1.1);
-}
+    margin-left: 9px;
+    padding: 4px 10px;
+    font-family: "Roboto";
+    color: #979797;
+    font-size: 10px;
+  }
 
-.colorButton:active {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
+  .colorButton {
+    width: 17.67px;
+    height: 17.67px;
+    border-radius: 50%;
+    margin-left: 5.3px;
+    border: none;
+    cursor: pointer;
+    transform-origin: center;
+  }
 
-.selectedColorButton {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  transform: scale(1.1);
-}
-.colorPalette {
-  margin-left: 49px;
-}
+  .colorButton:hover {
+    transform: scale(1.1);
+  }
 
-.colorPaletteSection {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-start;
-}
-.buttonContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+  .colorButton:active {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
 
-.createGroupButton {
-  width: 154px;
-  height: 38px;
-  background-color: #001f8b;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  border-radius: 11px;
-  margin-right: 27px;
-  margin-left: 42px;
-}
+  .selectedColorButton {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+  }
+  .colorPalette {
+    margin-left: 13px;
+  }
 
-.bottomSection {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width: 100%;
-  margin-top: 30px;
-}
+  .colorPaletteSection {
+    margin-top: 18px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-.bottomSection p {
-  font-size: 21px;
-}
+  .createGroupButton {
+    width: 186px;
+    height: 32px;
+    background-color: #001f8b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    border-radius: 11px;
+    font-size: 17px;
+    font-family: "Roboto";
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0.035em;
+    /* margin-top:34px; */
+    margin-left: 49px;
+    margin-right: 49px;
+  }
 
-label {
-  margin-left: 51px;
+  .errorMessage {
+    color: red;
+    font-size: 12px;
+  }
+
+  .bottomSection {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  label {
+    margin-left: 19px;
+  }
 }

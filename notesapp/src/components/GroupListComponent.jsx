@@ -17,7 +17,7 @@ const GroupList = ({ createdNewGroup }) => {
 
   return (
     <div className={styles.container}>
-      <header>
+      <header className = {styles.title}>
         <h1 className = {styles.heading}>Pocket Notes</h1>
       </header>
       <div className = {styles.notesFetchContainer}>

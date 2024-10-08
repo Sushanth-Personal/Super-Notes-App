@@ -5,13 +5,8 @@ import { useEffect, useState, useContext } from "react";
 import { getShortForm } from "./GroupListComponent";
 import { Context } from "../pages/mainpage";
 
-
 const ChatBox = () => {
-  const {
-    selectedGroup,
-    selectedColor,
-
-  } = useContext(Context);
+  const { selectedGroup, selectedColor } = useContext(Context);
   const [notes, setNotes] = useState(() => {
     const storedNotes = localStorage.getItem("notes");
     return storedNotes
@@ -50,13 +45,37 @@ const ChatBox = () => {
 
   return (
     <div className={styles.container}>
-      <header>
-        <div style = {{backgroundColor: selectedColor}} className={styles.shortForm}>
-          {getShortForm(selectedGroup)}
-        </div>
-        <p>{selectedGroup}</p>
-      </header>
+      {selectedGroup && (
+        <header>
+          <div
+            style={{ backgroundColor: selectedColor }}
+            className={styles.shortForm}
+          >
+            {getShortForm(selectedGroup)}
+          </div>
+          <p>{selectedGroup}</p>
+        </header>
+      )}
+
       <div className={styles.notesDisplay}>
+        {!selectedGroup && (
+          <div className = {styles.mainContainer}>
+            <main>
+              <img src="./Mainpage.png" alt="image" />
+              <h1>Pocket Notes</h1>
+              <p>
+                Send and receive messages without keeping your phone
+                online. Use Pocket Notes on up to 4 linked devices and 1
+                mobile phone
+              </p>
+              </main>
+              <footer>
+                <img src="./lock.png" alt="" />
+                <p> end-to-end encrypted</p>
+              </footer>
+          </div>
+          
+        )}
         {console.log("filteredNotes", filteredNotes)}
         {filteredNotes.map((note) => (
           <div key={note.id}>
@@ -68,16 +87,17 @@ const ChatBox = () => {
           </div>
         ))}
       </div>
-      <div className={styles.TextInputComponent}>
-        <TextInputComponent
-          setNotes={setNotes}
-          selectedGroup={selectedGroup}
-          setIsNoteSubmitted={setIsNoteSubmitted}
-        />
-      </div>
+      {selectedGroup && (
+        <div className={styles.TextInputComponent}>
+          <TextInputComponent
+            setNotes={setNotes}
+            selectedGroup={selectedGroup}
+            setIsNoteSubmitted={setIsNoteSubmitted}
+          />
+        </div>
+      )}
     </div>
   );
 };
-
 
 export default ChatBox;

@@ -8,13 +8,14 @@ const NotesFetchComponent = ({
   shortForm,
 }) => {
 
-  const { setSelectedGroup , setSelectedColor} = useContext(Context);
+  const {selectedGroup, setSelectedGroup , setSelectedColor} = useContext(Context);
+  
   const handleClick = () => {
     setSelectedGroup(groupName);
     setSelectedColor(groupColor);
   };
   return (
-    <button onClick={handleClick} className={styles.button}>
+    <button onClick={handleClick} className={selectedGroup === groupName? `${styles.button} ${styles.buttonSelected} `: styles.button}>
       <span
         className={styles.shortForm}
         style={{ backgroundColor: groupColor }}

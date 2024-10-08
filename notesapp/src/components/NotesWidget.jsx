@@ -1,24 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles/NotesWidget.module.css";
+import { Context } from "../pages/mainpage";
+
 const NotesWidget = ({ note, date, time }) => {
-  console.log('NotesWidget');
+  
+  const {selectedGroup} = useContext(Context);
   useEffect(
     ()=>{
       console.log("NotesWidget")
     },[]
   );
   return (
-    
-      <article  className = {styles.container}>
-        <p>{note}</p>
-        <div className = {styles.bottomSection}>
-          <p className = {styles.date}>{date}</p> 
-         <img className = {styles.ellipse} src="./ellipse.png" alt="" /> 
-          <p>{`  ${time}`}</p>
-        </div>
-      </article>
-    
+    <div>
+      { selectedGroup &&
+        <article  className = {styles.container}>
+          <p className = {styles.descriptionText}>{note}</p>
+          <div className = {styles.bottomSection}>
+            <p className = {styles.date}>{date}</p>
+           <img className = {styles.ellipse} src="./ellipse.png" alt="" />
+            <p>{`  ${time}`}</p>
+          </div>
+        </article>
+      }
+    </div>
   )
 }
 

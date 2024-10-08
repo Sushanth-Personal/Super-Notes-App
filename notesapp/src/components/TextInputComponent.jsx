@@ -25,7 +25,7 @@ const TextInputComponent = ({ setNotes, setIsNoteSubmitted }) => {
       id: existingNotes.length + 1,
       date: formatDateAndTime(Date.now(), "date"),
       time: formatDateAndTime(Date.now(), "time"),
-      description: description.trim(),
+      description: description,
       groupname: selectedGroup,
     };
 
@@ -38,21 +38,14 @@ const TextInputComponent = ({ setNotes, setIsNoteSubmitted }) => {
     setDescription(e.target.value);
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleClick();
-    }
-  };
+
 
   return (
-    <form className={styles.container}>
+    <div className={styles.container}>
       <textarea
-   
         className={styles.textArea}
         onChange={handleChange}
         value={description}
-        onKeyDown={handleKeyDown}
         placeholder="Enter your text here........."
       />
       <button
@@ -65,7 +58,7 @@ const TextInputComponent = ({ setNotes, setIsNoteSubmitted }) => {
           alt="Submit"
         />
       </button>
-    </form>
+    </div>
   );
 };
 

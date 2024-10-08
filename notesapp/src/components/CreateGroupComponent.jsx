@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import styles from "./styles/CreateGroupComponent.module.css";
 import PropTypes from "prop-types";
 import { Context } from "../pages/mainpage";
-
+import { getShortForm } from "./GroupListComponent";
 const colors = [
   "#B38BFA",
   "#FF79F2",
@@ -12,11 +12,7 @@ const colors = [
   "#6691FF",
 ]; // Add more colors if needed
 
-const CreateGroup = ({
-  setShowAddNotes,
-  setCreatedNewGroup,
-  
-}) => {
+const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
   const {
     selectedGroup,
     setSelectedGroup,
@@ -25,12 +21,14 @@ const CreateGroup = ({
   } = useContext(Context);
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
     useState(false);
+  const [groupName, setGroupName] = useState("");
+  const [groupColor, setGroupColor] = useState("");
 
   const handleCreateGroup = () => {
     const newGroup = {
-      groupName: selectedGroup,
-      groupColor: selectedColor,
-      shortForm: selectedGroup.substring(0, 3).toUpperCase(), // assuming shortForm is the first 3 letters of groupName
+      groupName: groupName,
+      groupColor: groupColor,
+      shortForm: getShortForm(selectedGroup), // assuming shortForm is the first 3 letters of groupName
     };
 
     const existingGroups = localStorage.getItem("groupData");
@@ -43,24 +41,34 @@ const CreateGroup = ({
     }
 
     setCreateGroupButtonClicked(true);
-    if (selectedGroup && selectedColor) {
+    if (groupName && groupColor) {
+      setSelectedGroup(groupName);
+      setSelectedColor(groupColor);
       setShowAddNotes(false);
       setCreatedNewGroup(true);
     }
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          handleCreateGroup();
+        }
+      }}
+    >
       <h1>Create New Group</h1>
       <div>
         <label htmlFor="groupName">Group Name</label>
         <input
+          autoFocus
           name="groupName"
           type="text"
-          value={selectedGroup}
+          value={groupName}
           onChange={(e) => {
             if (e.target.value.length <= 55) {
-              setSelectedGroup(e.target.value);
+              setGroupName(e.target.value);
             }
           }}
           placeholder="Enter group name"
@@ -82,26 +90,26 @@ const CreateGroup = ({
               }
               key={index}
               style={{ backgroundColor: color }}
-              onClick={() => setSelectedColor(color)}
+              onClick={() => setGroupColor(color)}
             ></button>
           ))}
         </div>
       </div>
       <div className={styles.bottomSection}>
-        {selectedColor === "" &&
-          selectedGroup === "" &&
+        {groupColor === "" &&
+          groupName === "" &&
           createGroupButtonClicked && (
             <p style={{ color: "red" }}>
               Please select a color and enter a group name
             </p>
           )}
-        {selectedColor === "" &&
-          selectedGroup !== "" &&
+        {groupColor === "" &&
+          groupName !== "" &&
           createGroupButtonClicked && (
             <p style={{ color: "red" }}>Please select a color</p>
           )}
-        {selectedGroup === "" &&
-          selectedColor !== "" &&
+        {groupName === "" &&
+          groupColor !== "" &&
           createGroupButtonClicked && (
             <p style={{ color: "red" }}>Please enter a group name</p>
           )}

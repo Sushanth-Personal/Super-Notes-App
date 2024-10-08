@@ -1,6 +1,6 @@
 .container {
   width: 740px;
- min-height: 317px;
+  min-height: 317px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
@@ -17,8 +17,8 @@
 
 .container h1 {
   font-size: 29px;
-  margin-top:35px;
-  margin-left:51px;
+  margin-top: 35px;
+  margin-left: 51px;
 }
 
 .groupNameInput {
@@ -81,6 +81,7 @@
   cursor: pointer;
   border-radius: 11px;
   margin-right: 27px;
+  margin-left: 42px;
 }
 
 .bottomSection {
@@ -88,15 +89,13 @@
   justify-content: flex-end;
   align-items: flex-end;
   width: 100%;
-  margin-top:30px;
-
-  
+  margin-top: 30px;
 }
 
 .bottomSection p {
   font-size: 21px;
 }
 
-label{
-  margin-left:51px;
+label {
+  margin-left: 51px;
 }

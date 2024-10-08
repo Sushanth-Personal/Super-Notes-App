@@ -37,7 +37,8 @@ const GroupList = ({ createdNewGroup }) => {
 };
 
 function getShortForm(groupName) {
-  const words = groupName.split(" ");
+  const capitalizedName = groupName.toUpperCase();
+  const words = capitalizedName.split(" ");
   if (words.length === 1) {
     return words[0].charAt(0);
   } else if (words.length === 2) {

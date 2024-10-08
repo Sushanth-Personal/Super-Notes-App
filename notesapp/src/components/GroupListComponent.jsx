@@ -17,13 +17,15 @@ const GroupList = ({ createdNewGroup }) => {
 
   return (
     <div className={styles.container}>
-      <h1 className = {styles.heading}>Pocket Notes</h1>
+      <header>
+        <h1 className = {styles.heading}>Pocket Notes</h1>
+      </header>
       <div className = {styles.notesFetchContainer}>
         
         {groups &&
           groups.map((group, index) => (
             <div className = {styles.notesFetchComponent} key={index}>
-              {/*  */}
+              
               <NotesFetchComponent
                 groupName={group.groupName}
                 groupColor={group.groupColor}

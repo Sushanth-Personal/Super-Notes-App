@@ -21,6 +21,7 @@
 
 .button:hover {
   background-color: rgba(47, 47, 47, 0.17);
+  width: 100%;
 }
 
 .shortForm {

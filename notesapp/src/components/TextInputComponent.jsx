@@ -1,22 +1,19 @@
 import styles from "./styles/TextInputComponent.module.css";
 import formatDateAndTime from "../utils/formatDateAndTime";
-import { useState ,useContext} from "react";
+import { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import GreyButton from "../assets/GreyButton.png";
 import BlueButton from "../assets/BlueButton.png";
 import { Context } from "../pages/mainpage";
 
-const TextInputComponent = ({
-  setNotes,
-  setIsNoteSubmitted,
-}) => {
+const TextInputComponent = ({ setNotes, setIsNoteSubmitted }) => {
   const [description, setDescription] = useState("");
-  const {selectedGroup} = useContext(Context);
+  const { selectedGroup } = useContext(Context);
   const handleClick = () => {
-    if(description.trim() !== "") {
-    addCurrentNote();
-    setIsNoteSubmitted(true);
-    setDescription(""); // Clear the input field after adding the note
+    if (description.trim() !== "") {
+      addCurrentNote();
+      setIsNoteSubmitted(true);
+      setDescription(""); // Clear the input field after adding the note
     }
   };
 
@@ -49,8 +46,9 @@ const TextInputComponent = ({
   };
 
   return (
-    <div className={styles.container}>
+    <form className={styles.container}>
       <textarea
+   
         className={styles.textArea}
         onChange={handleChange}
         value={description}
@@ -62,9 +60,12 @@ const TextInputComponent = ({
         onClick={handleClick}
         aria-label="Submit Note"
       >
-        <img src={description.trim() === "" ? GreyButton : BlueButton} alt="Submit" />
+        <img
+          src={description.trim() === "" ? GreyButton : BlueButton}
+          alt="Submit"
+        />
       </button>
-    </div>
+    </form>
   );
 };
 

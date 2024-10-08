@@ -3,18 +3,33 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
     margin: 0;
     padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+
 }
 
+.container header{
+    height: 154px;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+}
+
+.container::-webkit-scrollbar {
+    width: 0px;
+}
 .notesFetchComponent{
     width: 100%;
+    z-index: 0;
     
 }
 
 .notesFetchContainer{
-    margin-top: 49px;
+    margin-top: 154px;
 }
 
 .heading{
@@ -24,5 +39,6 @@
     font-weight: 500;
     letter-spacing: 0.02em;
     margin-left: 90px;
+
 }
 

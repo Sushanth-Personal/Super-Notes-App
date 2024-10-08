@@ -25,6 +25,8 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
   const [groupColor, setGroupColor] = useState("");
 
   const handleCreateGroup = () => {
+    setCreateGroupButtonClicked(true);
+    if (groupName && groupColor) {
     const newGroup = {
       groupName: groupName,
       groupColor: groupColor,
@@ -41,7 +43,7 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
     }
 
     setCreateGroupButtonClicked(true);
-    if (groupName && groupColor) {
+    
       setSelectedGroup(groupName);
       setSelectedColor(groupColor);
       setShowAddNotes(false);
@@ -84,7 +86,7 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
           {colors.map((color, index) => (
             <button
               className={
-                selectedColor === color
+                groupColor === color
                   ? `${styles.colorButton} ${styles.selectedColorButton}`
                   : styles.colorButton
               }

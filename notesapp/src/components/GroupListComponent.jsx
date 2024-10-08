@@ -56,3 +56,4 @@ GroupList.defaultProps = {
 };
 
 export default GroupList;
+export {getShortForm};

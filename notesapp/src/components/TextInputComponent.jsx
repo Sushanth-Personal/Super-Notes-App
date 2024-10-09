@@ -54,6 +54,7 @@ const TextInputComponent = ({ setNotes, setIsNoteSubmitted }) => {
         aria-label="Submit Note"
       >
         <img
+        className = {styles.textEnterButton}
           src={description.trim() === "" ? GreyButton : BlueButton}
           alt="Submit"
         />

@@ -43,6 +43,9 @@
   background-color: #dae5f5;
   overflow: scroll;
   overflow-x: hidden;
+  /* display:flex;
+  flex-direction: column;
+  justify-content: space-between; */
 }
 
 
@@ -119,6 +122,4 @@ main img{
 .mainContainer footer img{
   margin-right: 10px;
 }
-
-
 

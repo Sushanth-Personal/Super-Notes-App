@@ -23,7 +23,6 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
 
   const handleCreateGroup = () => {
     setCreateGroupButtonClicked(true);
-    console.log(groupName, groupColor);
     if (groupName.trim() && groupColor) {
       const newGroup = {
         groupName: groupName.trim(),
@@ -40,7 +39,7 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
         if (duplicateGroupName) {
           setErrorMessage("A group with this name already exists.");
           return;
-        }else{
+        } else {
           setErrorMessage("");
         }
         groups.push(newGroup);

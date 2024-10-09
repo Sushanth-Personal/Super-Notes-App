@@ -1,4 +1,4 @@
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768.5px) {
   
 
 .container {
@@ -117,6 +117,8 @@ main p{
 }
 main img{
   margin-top: 24%;
+
+  width:41.4vw;
 }
 
 .mainContainer footer{
@@ -131,7 +133,7 @@ main img{
 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768.5px) {
   
 
   .container {

@@ -49,12 +49,14 @@
   flex-shrink: 0;
 }
 
-@media screen and (max-width: 768px) {    
+@media screen and (max-width: 768.5px) {    
   .button{
     font-size: 18px;
   }
   .shortForm{
     width: 62px;
     height: 62px;
+    margin-right: 17px;
+    margin-left: 34px;
   }
 }

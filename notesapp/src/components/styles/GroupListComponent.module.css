@@ -1,4 +1,4 @@
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768.5px) {
   .container {
     background-color: white;
     display: flex;
@@ -37,7 +37,7 @@
     margin-left: 90px;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768.5px) {
   .container {
     position: relative;
     width: 100vw;

@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768.5px) {
   .container {
     display: flex;
     flex-direction: row;
@@ -67,7 +67,7 @@
     z-index: 2;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768.5px) {
 
 
   .overlay {

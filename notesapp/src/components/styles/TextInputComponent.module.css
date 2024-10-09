@@ -1,4 +1,4 @@
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 768.5px) { 
 .container {
   min-height: 255px;
   width: 100%;
@@ -56,7 +56,7 @@
 
 }
 
-@media screen and (max-width: 768px) { 
+@media screen and (max-width: 768.5px) { 
   .container {
     min-height: 130px;
     width: 100%;

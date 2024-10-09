@@ -1,3 +1,6 @@
+@media screen and (min-width: 768px) {
+  
+
 .container {
     margin: 20px 40px;
     background-color: white;
@@ -25,15 +28,63 @@
     width: 100%;
     margin-top: 27px;
     color:#353535;
+    font-weight: 500;
+    font-family: 'Roboto';
+    letter-spacing: 0.02em; 
+    line-height: 13px;
 
   }
 
   .date{
-    margin-right: 20px;
+    margin-right: 16px;
   }
   .ellipse{
-    margin-right: 20px;
+    margin-right: 16px;
   }
 
 
+}
 
+@media screen and (max-width: 767px) {
+  
+
+  .container {
+      margin: 17px 15px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      font-size: 13px;
+      letter-spacing: 0.035em;
+      line-height: 21px;
+      font-family: 'Roboto';
+      padding:28px 13px;
+    }
+    .descriptionText {
+      white-space: pre-wrap;
+    }
+    article{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .bottomSection{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+      margin-top: 27px;
+      color:#353535;
+  
+    }
+  
+    .date{
+      margin-right: 8px;
+    }
+    .ellipse{
+      margin-right: 8px;
+    }
+  
+  
+  }
+  

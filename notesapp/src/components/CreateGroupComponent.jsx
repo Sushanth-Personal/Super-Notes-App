@@ -22,27 +22,32 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
     useState(false);
   const [groupName, setGroupName] = useState("");
   const [groupColor, setGroupColor] = useState("");
+const [errorMessage, setErrorMessage] = useState("");
+
+  
 
   const handleCreateGroup = () => {
     setCreateGroupButtonClicked(true);
     if (groupName && groupColor) {
-    const newGroup = {
-      groupName: groupName,
-      groupColor: groupColor,
-      shortForm: getShortForm(selectedGroup), // assuming shortForm is the first 3 letters of groupName
-    };
-
-    const existingGroups = localStorage.getItem("groupData");
-    if (existingGroups) {
-      const groups = JSON.parse(existingGroups);
-      groups.push(newGroup);
-      localStorage.setItem("groupData", JSON.stringify(groups));
-    } else {
-      localStorage.setItem("groupData", JSON.stringify([newGroup]));
-    }
-
-    setCreateGroupButtonClicked(true);
-    
+      const newGroup = {
+        groupName: groupName,
+        groupColor: groupColor,
+        shortForm: getShortForm(selectedGroup), // assuming shortForm is the first 3 letters of groupName
+      };
+  
+      const existingGroups = localStorage.getItem("groupData");
+      if (existingGroups) {
+        const groups = JSON.parse(existingGroups);
+        const duplicateGroupName = groups.find((group) => group.groupName === groupName);
+        if (duplicateGroupName) {
+         setErrorMessage("A group with this name already exists.");
+          return;
+        }
+        groups.push(newGroup);
+        localStorage.setItem("groupData", JSON.stringify(groups));
+      } else {
+        localStorage.setItem("groupData", JSON.stringify([newGroup]));
+      }
       setSelectedGroup(groupName);
       setSelectedColor(groupColor);
       setShowAddNotes(false);
@@ -113,6 +118,11 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
           groupColor !== "" &&
           createGroupButtonClicked && (
             <p className = {styles.errorMessage} style={{ color: "red" }}>Please enter a group name</p>
+          )}
+          {groupName !== "" &&
+          groupColor !== "" &&
+          createGroupButtonClicked && errorMessage && (
+            <p className = {styles.errorMessage} style={{ color: "red" }}>{errorMessage}</p>
           )}
         <button
           className={styles.createGroupButton}

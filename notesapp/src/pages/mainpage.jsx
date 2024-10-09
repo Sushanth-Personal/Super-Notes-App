@@ -34,33 +34,35 @@ const MainPage = () => {
       }}
     >
       <div className={styles.container}>
-        <div className={styles.groupList}>
-          <GroupList createdNewGroup={createdNewGroup} />
-          <button className={styles.addNotes} onClick={handleClick}>
-            +
-          </button>
-        </div>
-        {!isMobile && (
-          
-            <div className={styles.chatBox}>
-              <ChatBox />
-            </div>
-         
+        {!selectedGroup && (
+          <div className={styles.groupList}>
+            <GroupList createdNewGroup={createdNewGroup} />
+            <button className={styles.addNotes} onClick={handleClick}>
+              +
+            </button>
+          </div>
         )}
-            {showAddNotes && (
-              <div className={styles.overlay} onClick={handleOverlayClick}>
-                <div
-                  className={styles.addNotesComponent}
-                  onClick={(e) => e.stopPropagation()} // Stop click propagation
-                >
-                  <CreateGroup
-                    setShowAddNotes={setShowAddNotes}
-                    setCreatedNewGroup={setCreatedNewGroup}
-                  />
-                </div>
-              </div>
-            )}
-      
+        {selectedGroup && (
+          <div className={styles.chatBox}>
+            <ChatBox />
+          </div>
+        )}
+        {showAddNotes && (
+          <div
+            className={styles.overlay}
+            onClick={handleOverlayClick}
+          >
+            <div
+              className={styles.addNotesComponent}
+              onClick={(e) => e.stopPropagation()} // Stop click propagation
+            >
+              <CreateGroup
+                setShowAddNotes={setShowAddNotes}
+                setCreatedNewGroup={setCreatedNewGroup}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </Context.Provider>
   );

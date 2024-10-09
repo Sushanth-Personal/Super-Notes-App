@@ -28,6 +28,7 @@ const [errorMessage, setErrorMessage] = useState("");
 
   const handleCreateGroup = () => {
     setCreateGroupButtonClicked(true);
+    console.log(groupName, groupColor);
     if (groupName && groupColor) {
       const newGroup = {
         groupName: groupName,

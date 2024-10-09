@@ -39,6 +39,7 @@ const GroupList = ({ createdNewGroup }) => {
 };
 
 function getShortForm(groupName) {
+  if(groupName){
   const capitalizedName = groupName.toUpperCase();
   const words = capitalizedName.split(" ");
   if (words.length === 1) {
@@ -48,6 +49,7 @@ function getShortForm(groupName) {
   } else {
     return words[0].charAt(0) + words[1].charAt(0);
   }
+}
 }
 
 GroupList.propTypes = {

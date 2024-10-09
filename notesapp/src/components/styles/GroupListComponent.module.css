@@ -1,53 +1,84 @@
-.container {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 434px;
-  overflow: scroll;
-  overflow-x: hidden;
-}
+@media screen and (min-width: 768px) {
+  .container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 434px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
 
-.title {
-  height: 154px;
-  width: 434px;
-  position: fixed;
-  z-index: 1;
-  background-color: white;
-}
+  .title {
+    height: 154px;
+    width: 434px;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+  }
+  .notesFetchComponent {
+    width: 100%;
+    z-index: 0;
+  }
 
-.container::-webkit-scrollbar {
-  width: 0px;
-}
-.notesFetchComponent {
-  width: 100%;
-  z-index: 0;
-}
+  .notesFetchContainer {
+    margin-top: 154px;
+  }
 
-.notesFetchContainer {
-  margin-top: 154px;
+  .heading {
+    margin-top: 70px;
+    font-family: "Roboto";
+    font-size: 35px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-left: 90px;
+  }
 }
-
-.heading {
-  margin-top: 70px;
-  font-family: "Roboto";
-  font-size: 35px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  margin-left: 90px;
-}
-
-@media screen and (max-width: 768px) {    
-  .container{
+@media screen and (max-width: 768px) {
+  .container {
     position: relative;
     width: 100vw;
     height: 100vh;
     margin: 0;
     overflow: scroll;
-  overflow-x: hidden;
+    overflow-x: hidden;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+  }
+
+  .title {
+    height: 154px;
+    width: 434px;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+  }
+
+  .container::-webkit-scrollbar {
+    width: 0px;
+  }
+  .notesFetchComponent {
+    width: 100%;
+    z-index: 0;
+  }
+
+  .notesFetchContainer {
+    margin-top: 154px;
+  }
+
+  .heading {
+    margin-top: 50px;
+    font-family: "Roboto";
+    font-size: 35px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-left: 46px;
   }
 }
-

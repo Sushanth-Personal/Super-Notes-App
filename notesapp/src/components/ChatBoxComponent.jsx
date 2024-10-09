@@ -7,7 +7,7 @@ import { Context } from "../pages/mainpage";
 import { useMediaQuery } from "react-responsive";
 
 const ChatBox = () => {
-  const { selectedGroup, selectedColor } = useContext(Context);
+  const { selectedGroup, selectedColor, setSelectedGroup } = useContext(Context);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const [notes, setNotes] = useState(() => {
@@ -46,7 +46,7 @@ const ChatBox = () => {
 
   return (
     <div className={styles.container}>
-      {selectedGroup && (
+      {selectedGroup && !isMobile && (
         <header>
           <div
             style={{ backgroundColor: selectedColor }}
@@ -54,7 +54,19 @@ const ChatBox = () => {
           >
             {getShortForm(selectedGroup)}
           </div>
-          <p>{selectedGroup}</p>
+          <p className = {styles.groupName}>{selectedGroup}</p>
+        </header>
+      )}
+          {selectedGroup && isMobile && (
+        <header>
+          <img className = {styles.backButton} src="./backButton.png" alt="" onClick={() => setSelectedGroup(null)} />
+          <div
+            style={{ backgroundColor: selectedColor }}
+            className={styles.shortForm}
+          >
+            {getShortForm(selectedGroup)}
+          </div>
+          <p className = {styles.groupName}>{selectedGroup}</p>
         </header>
       )}
       

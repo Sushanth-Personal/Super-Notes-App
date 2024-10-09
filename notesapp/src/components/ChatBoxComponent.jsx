@@ -56,12 +56,13 @@ const ChatBox = () => {
           <p className={styles.groupName}>{selectedGroup}</p>
         </header>
       )}
+
       {selectedGroup && isMobile && (
         <header>
           <img
             className={styles.backButton}
             src="./backButton.png"
-            alt=""
+            alt="back"
             onClick={() => setSelectedGroup(null)}
           />
           <div
@@ -74,43 +75,73 @@ const ChatBox = () => {
         </header>
       )}
 
-      <div className={styles.notesDisplay}>
-        {!selectedGroup && !isMobile && (
-          <div className={styles.mainContainer}>
-            <main>
-              <img src="./Mainpage.png" alt="image" />
-              <h1>Pocket Notes</h1>
-              <p>
-                Send and receive messages without keeping your phone
-                online. Use Pocket Notes on up to 4 linked devices and
-                1 mobile phone
-              </p>
-            </main>
-            <footer>
-              <img src="./lock.png" alt="" />
-              <p>end-to-end encrypted</p>
-            </footer>
-          </div>
-        )}
+      {!isMobile && (
+        <>
+          {!selectedGroup && (
+            <div className={styles.mainContainer}>
+              <main>
+                <img src="./Mainpage.png" alt="image" />
+                <h1>Pocket Notes</h1>
+                <p>
+                  Send and receive messages without keeping your phone
+                  online. Use Pocket Notes on up to 4 linked devices and 1
+                  mobile phone.
+                </p>
+              </main>
+              <footer>
+                <img src="./lock.png" alt="lock" />
+                <p>end-to-end encrypted</p>
+              </footer>
+            </div>
+          )}
 
-        {filteredNotes.map((note) => (
-          <div key={note.id}>
-            <NotesWidget
-              note={note.description}
-              date={note.date}
-              time={note.time}
+          {selectedGroup && (
+            <>
+              <div className={styles.notesDisplay}>
+                {filteredNotes.map((note) => (
+                  <div key={note.id}>
+                    <NotesWidget
+                      note={note.description}
+                      date={note.date}
+                      time={note.time}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className={styles.TextInputComponent}>
+                <TextInputComponent
+                  setNotes={setNotes}
+                  selectedGroup={selectedGroup}
+                  setIsNoteSubmitted={setIsNoteSubmitted}
+                />
+              </div>
+            </>
+          )}
+        </>
+      )}
+
+      {isMobile && selectedGroup && (
+        <>
+          <div className={styles.notesDisplay}>
+            {filteredNotes.map((note) => (
+              <div key={note.id}>
+                <NotesWidget
+                  note={note.description}
+                  date={note.date}
+                  time={note.time}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.TextInputComponent}>
+            <TextInputComponent
+              setNotes={setNotes}
+              selectedGroup={selectedGroup}
+              setIsNoteSubmitted={setIsNoteSubmitted}
             />
           </div>
-        ))}
-      </div>
-      {selectedGroup && (
-        <div className={styles.TextInputComponent}>
-          <TextInputComponent
-            setNotes={setNotes}
-            selectedGroup={selectedGroup}
-            setIsNoteSubmitted={setIsNoteSubmitted}
-          />
-        </div>
+        </>
       )}
     </div>
   );

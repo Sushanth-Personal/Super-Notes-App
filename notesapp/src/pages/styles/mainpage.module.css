@@ -9,18 +9,10 @@
 @media screen and (min-width: 768.5px) {
   .container {
     display: flex;
-    flex-direction: row;
     height: 100vh; /* take up full height of the viewport */
     width: 100vw; /* take up full width of the viewport */
   }
 
-  .groupList {
-    background-color: white; /* light gray background */
-    border-right: 1px solid #ddd; /* separator between group list and chat box */
-    max-width: 430px;
-    width: 100%;
-    position: relative;
-  }
 
   .addNotes {
     width: 93px;
@@ -44,11 +36,13 @@
     background-color: #2404d7; /* darker green on hover */
   }
 
-  .chatBox {
-    width: 100%;
-    background-color: #fff; /* white background */
-  }
-
+ .groupList{
+  width: 28%;
+  position: relative;
+ }
+.chatBox{
+  width: 72%;
+}
   .overlay {
     position: fixed;
     top: 0;
@@ -132,4 +126,6 @@
     position: absolute;
     z-index: 2;
   }
+
+  
 }

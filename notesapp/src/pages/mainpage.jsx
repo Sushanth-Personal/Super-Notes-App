@@ -35,6 +35,17 @@ const MainPage = () => {
     >
       <div className={styles.container}>
         {!selectedGroup && isMobile && (
+          <>
+            <GroupList
+              className={styles.groupList}
+              createdNewGroup={createdNewGroup}
+            />
+            <button className={styles.addNotes} onClick={handleClick}>
+              +
+            </button>
+          </>
+        )}
+        {!isMobile && (
           <div className={styles.groupList}>
             <GroupList createdNewGroup={createdNewGroup} />
             <button className={styles.addNotes} onClick={handleClick}>
@@ -42,20 +53,9 @@ const MainPage = () => {
             </button>
           </div>
         )}
-             {!isMobile && (
-          <div className={styles.groupList}>
-            <GroupList createdNewGroup={createdNewGroup} />
-            <button className={styles.addNotes} onClick={handleClick}>
-              +
-            </button>
-          </div>
-        )}
-   
-   
-          <div className={styles.chatBox}>
-            <ChatBox />
-          </div>
-  
+
+        <ChatBox />
+
         {showAddNotes && (
           <div
             className={styles.overlay}

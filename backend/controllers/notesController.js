@@ -7,10 +7,10 @@ const getNotes = async (req, res) => {
     if (!notes || notes.length === 0) {
       res.status(404).json({ message: "Notes not found" });
     } else {
-      const filteredNotes = notes.filter(
-        (note) => note.groupName === req.params.groupName
-      );
-      res.status(200).json(filteredNotes);
+      // const filteredNotes = notes.filter(
+      //   (note) => note.groupName === req.params.groupName
+      // );
+      res.status(200).json(notes);
     }
   } catch (error) {
     res.status(500).json({ message: "Error getting notes", error });
@@ -19,10 +19,10 @@ const getNotes = async (req, res) => {
 
 const createNotes = async (req, res) => {
   try {
-    const { groupName,groupColor,shortForm,notes } = req.body;
-    const newNote = new Notes({ groupName, groupColor,shortForm, notes });
+    const { groupName,groupColor,shortForm } = req.body;
+    const newNote = new Notes({ groupName, groupColor,shortForm});
     await newNote.save();
-    res.status(201).json(newNote);
+    res.status(201).json(Notes);
   } catch (error) {
     res.status(500).json({ message: "Error creating note", error });
   }

@@ -3,6 +3,7 @@ import styles from "./styles/CreateGroupComponent.module.css";
 import PropTypes from "prop-types";
 import { Context } from "../pages/mainpage";
 import { getShortForm } from "./GroupListComponent";
+import {createNotesGroup} from "../api/notesAPI.js";
 const colors = [
   "#B38BFA",
   "#FF79F2",
@@ -20,40 +21,37 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
   const [groupName, setGroupName] = useState("");
   const [groupColor, setGroupColor] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleCreateGroup = () => {
+  const handleCreateGroup = async () => {
     setCreateGroupButtonClicked(true);
-    if (groupName.trim() && groupColor) {
+    if (!groupName.trim() || !groupColor) {
+      setErrorMessage("Please fill in all fields.");
+      return;
+    }
+
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
       const newGroup = {
         groupName: groupName.trim(),
-        groupColor: groupColor,
-        shortForm: getShortForm(selectedGroup), // assuming shortForm is the first 3 letters of groupName
+        groupColor,
+        shortForm: getShortForm(groupName.trim()),
       };
-
-      const existingGroups = localStorage.getItem("groupData");
-      if (existingGroups) {
-        const groups = JSON.parse(existingGroups);
-        const duplicateGroupName = groups.find(
-          (group) => group.groupName === groupName.trim()
-        );
-        if (duplicateGroupName) {
-          setErrorMessage("A group with this name already exists.");
-          return;
-        } else {
-          setErrorMessage("");
-        }
-        groups.push(newGroup);
-        localStorage.setItem("groupData", JSON.stringify(groups));
-      } else {
-        localStorage.setItem("groupData", JSON.stringify([newGroup]));
-      }
-      setSelectedGroup(groupName.trim());
-      setSelectedColor(groupColor);
+      const createdGroup = await createNotesGroup(newGroup.groupName, newGroup.groupColor, newGroup.shortForm);
+      
+      setSelectedGroup(createdGroup.groupName);
+      setSelectedColor(createdGroup.groupColor);
       setShowAddNotes(false);
       setCreatedNewGroup(true);
+    } catch (error) {
+      setErrorMessage("Error creating group: ",error);
+    } finally {
+      setLoading(false);
     }
   };
-
+  
   return (
     <div
       className={styles.container}

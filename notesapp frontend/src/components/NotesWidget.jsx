@@ -4,11 +4,11 @@ import styles from "./styles/NotesWidget.module.css";
 import { Context } from "../pages/mainpage";
 
 const NotesWidget = ({ note, date, time }) => {
-  const { selectedGroup } = useContext(Context);
-
+  const { selectedGroup} = useContext(Context);
+  
   return (
     <div>
-      {selectedGroup && (
+      {selectedGroup && note &&(
         <article className={styles.container}>
           <p className={styles.descriptionText}>{note}</p>
           <div className={styles.bottomSection}>

@@ -3,7 +3,8 @@ import styles from "./styles/CreateGroupComponent.module.css";
 import PropTypes from "prop-types";
 import { Context } from "../pages/mainpage";
 import { getShortForm } from "./GroupListComponent";
-import {createNotesGroup} from "../api/notesAPI.js";
+import { createNotesGroup, addNotes } from "../api/notesAPI.js";
+
 const colors = [
   "#B38BFA",
   "#FF79F2",
@@ -14,14 +15,13 @@ const colors = [
 ]; // Add more colors if needed
 
 const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
-  const { selectedGroup, setSelectedGroup, setSelectedColor } =
+  const {  setSelectedGroup, setSelectedColor ,setRefreshPage} =
     useContext(Context);
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
     useState(false);
   const [groupName, setGroupName] = useState("");
   const [groupColor, setGroupColor] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleCreateGroup = async () => {
     setCreateGroupButtonClicked(true);
@@ -30,7 +30,6 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
       return;
     }
 
-    setLoading(true);
     setErrorMessage("");
 
     try {
@@ -39,19 +38,30 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
         groupColor,
         shortForm: getShortForm(groupName.trim()),
       };
-      const createdGroup = await createNotesGroup(newGroup.groupName, newGroup.groupColor, newGroup.shortForm);
-      
+      const createdGroup = await createNotesGroup(
+        newGroup.groupName,
+        newGroup.groupColor,
+        newGroup.shortForm
+      );
+      console.log("This is the group created ",createdGroup)
       setSelectedGroup(createdGroup.groupName);
       setSelectedColor(createdGroup.groupColor);
+      setRefreshPage(true);
       setShowAddNotes(false);
       setCreatedNewGroup(true);
+     
+      
     } catch (error) {
-      setErrorMessage("Error creating group: ",error);
+      setErrorMessage("Error creating group: ", error);
     } finally {
-      setLoading(false);
+      console.log("Popup unmounted");
     }
   };
+
   
+
+  
+
   return (
     <div
       className={styles.container}

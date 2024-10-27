@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import NotesFetchComponent from "./NotesFetchComponent";
 import styles from "./styles/GroupListComponent.module.css";
 import { getNotes } from "../api/notesAPI";
-
+import { Context } from "../pages/mainpage";
 const GroupList = ({ createdNewGroup }) => {
   const [groups, setGroups] = useState([]);
+  const { refreshPage, setRefreshPage } = useContext(Context);
 
   useEffect(() => {
     const fetchNotes = async () => {
       const notes = await getNotes();
       if (notes) {
         console.log("Fetched Notes:", notes);
-        // If you have a state to store notes, set it here
-        setGroups(notes); // Assuming `setGroups` is the function to update the notes state
+        setGroups(notes);
       }
     };
-    
+    setRefreshPage(false);
     fetchNotes();
-  }, [createdNewGroup]);
+  }, [createdNewGroup, refreshPage]);
 
   return (
     <div className={styles.container}>
@@ -30,6 +30,7 @@ const GroupList = ({ createdNewGroup }) => {
           groups.map((group, index) => (
             <div className={styles.notesFetchComponent} key={index}>
               <NotesFetchComponent
+                groupId={group._id}
                 groupName={group.groupName}
                 groupColor={group.groupColor}
                 shortForm={getShortForm(group.groupName)}

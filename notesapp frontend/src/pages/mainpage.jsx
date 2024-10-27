@@ -13,6 +13,15 @@ const MainPage = () => {
   const [createdNewGroup, setCreatedNewGroup] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [refreshPage,setRefreshPage] = useState(false);
+  
+  const [groupId,setGroupId] = useState(null);
+  const [notes, setNotes] = useState([{
+    text:"",
+    date:"",
+    time:"",
+  }]);
+    
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const handleClick = () => {
@@ -31,6 +40,12 @@ const MainPage = () => {
         setSelectedGroup,
         selectedColor,
         setSelectedColor,
+        groupId,
+        setGroupId,
+        notes,
+        setNotes,
+        refreshPage,
+        setRefreshPage
       }}
     >
       <div className={styles.container}>

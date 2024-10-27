@@ -15,6 +15,10 @@ const notesSchema = new mongoose.Schema({
         required:true
     },
     notes: [{
+        id:{
+            type:Number,
+            required:true
+        },
         text:{
             type:String,
         },

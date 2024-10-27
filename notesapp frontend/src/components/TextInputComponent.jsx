@@ -1,43 +1,44 @@
 import styles from "./styles/TextInputComponent.module.css";
+import {useEffect} from "react";
 import formatDateAndTime from "../utils/formatDateAndTime";
 import { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import GreyButton from "../assets/GreyButton.png";
 import BlueButton from "../assets/BlueButton.png";
 import { Context } from "../pages/mainpage";
-
-const TextInputComponent = ({ setNotes, setIsNoteSubmitted }) => {
+import {addNotes} from "../api/notesAPI";
+const TextInputComponent = ({ setIsNoteSubmitted }) => {
   const [description, setDescription] = useState("");
-  const { selectedGroup } = useContext(Context);
+  const { selectedGroup,groupId,notes,setNotes} = useContext(Context);
+
   const handleClick = () => {
     if (description.trim() !== "") {
       addCurrentNote();
       setIsNoteSubmitted(true);
       setDescription(""); // Clear the input field after adding the note
     }
+    console.log("GroupID",groupId);
+    
   };
 
   const addCurrentNote = () => {
-    const existingNotes =
-      JSON.parse(localStorage.getItem("notes")) || [];
-
+   console.log(notes.length);
+   const existingNotes = notes;
     const newNote = {
       id: existingNotes.length + 1,
       date: formatDateAndTime(Date.now(), "date"),
       time: formatDateAndTime(Date.now(), "time"),
-      description: description,
-      groupname: selectedGroup,
+      text: description,
     };
 
     const updatedNotes = [...existingNotes, newNote];
     setNotes(updatedNotes);
-    localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    addNotes(groupId,updatedNotes);
   };
 
   const handleChange = (e) => {
     setDescription(e.target.value);
   };
-
 
 
   return (

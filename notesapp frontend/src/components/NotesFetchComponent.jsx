@@ -1,21 +1,64 @@
 import PropTypes from "prop-types";
 import styles from "./styles/NotesFetchComponent.module.css";
 import { Context } from "../pages/mainpage";
-import { useContext } from "react";
+import { useEffect, useContext, useState } from "react";
+import { getNotes, deleteNotes } from "../api/notesAPI";
+
 const NotesFetchComponent = ({
+  groupId,
   groupName,
   groupColor,
   shortForm,
 }) => {
+  const {
+    selectedGroup,
+    setSelectedGroup,
+    setSelectedColor,
+    setNotes,
+    notes,
+    setGroupId,
+    setRefreshPage,
+  } = useContext(Context);
 
-  const {selectedGroup, setSelectedGroup , setSelectedColor} = useContext(Context);
-  
+  const [notesFetch, setNotesFetch] = useState(false);
+
   const handleClick = () => {
-    setSelectedGroup(groupName);
-    setSelectedColor(groupColor);
+    setNotesFetch(true);
   };
+
+  useEffect(() => {
+    const getNotesById = async () => {
+      const filteredNotes = await getNotes(groupId);
+      setNotes(filteredNotes.notes);
+    };
+    getNotesById();
+
+    if (notesFetch) {
+      setSelectedGroup(groupName);
+      setSelectedColor(groupColor);
+      setGroupId(groupId);
+      setNotesFetch(false);
+    }
+  }, [notesFetch]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Delete") {
+      deleteNotes(groupId);
+      setRefreshPage(true);
+      setSelectedGroup(null);
+    }
+  };
+
   return (
-    <button onClick={handleClick} className={selectedGroup === groupName? `${styles.button} ${styles.buttonSelected} `: styles.button}>
+    <button
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      className={
+        selectedGroup === groupName
+          ? `${styles.button} ${styles.buttonSelected} `
+          : styles.button
+      }
+    >
       <span
         className={styles.shortForm}
         style={{ backgroundColor: groupColor }}

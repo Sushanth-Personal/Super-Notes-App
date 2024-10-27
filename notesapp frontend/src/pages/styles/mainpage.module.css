@@ -15,7 +15,7 @@
   }
 
 
-  .addNotes {
+  .addNotesGroup {
     width: 93px;
     height: 93px;
     position: absolute; /* fixed position */
@@ -33,7 +33,7 @@
     align-items: center;
   }
 
-  .addNotes:hover {
+  .addNotesGroup:hover {
     background-color: #2404d7; /* darker green on hover */
   }
 
@@ -83,7 +83,7 @@
     position: relative;
   }
 
-  .addNotes {
+  .addNotesGroup {
     position: absolute;
     width: 75px;
     height: 75px;

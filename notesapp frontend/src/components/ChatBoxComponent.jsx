@@ -1,7 +1,7 @@
 import TextInputComponent from "./TextInputComponent";
 import styles from "./styles/ChatBoxComponent.module.css";
 import NotesWidget from "./NotesWidget";
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import { getShortForm } from "./GroupListComponent";
 import { Context } from "../pages/mainpage";
 import { useMediaQuery } from "react-responsive";
@@ -14,13 +14,28 @@ const ChatBox = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const [isNoteSubmitted, setIsNoteSubmitted] = useState(false);
-
+  const [chatBoxVisible,setChatBoxVisible] = useState(false);
   const handleBackButton = () => {
     setSelectedGroup(null);
   };
 
+  useEffect(()=>{
+    if(isMobile && !selectedGroup){
+      setChatBoxVisible(false);
+    }else if(isMobile && selectedGroup){
+      setChatBoxVisible(true);
+    }
+
+    if(!isMobile){
+      setChatBoxVisible(true);
+    }
+ console.log("chatBox",chatBoxVisible);
+  },[isMobile,selectedGroup]);
+
   return (
-    <div className={styles.container}>
+    <>
+    {chatBoxVisible&&
+    <div className={styles.container} id="chatbox-container">
       {selectedGroup && !isMobile && (
         <header>
           <div
@@ -97,6 +112,7 @@ const ChatBox = () => {
               </div>
             </>
           )}
+
         </>
       )}
 
@@ -123,6 +139,8 @@ const ChatBox = () => {
         </>
       )}
     </div>
+    }
+   </>
   );
 };
 

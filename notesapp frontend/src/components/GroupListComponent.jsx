@@ -21,23 +21,24 @@ const GroupList = ({ createdNewGroup }) => {
   }, [createdNewGroup, refreshPage]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="group-list-container">
       <header className={styles.title}>
         <h1 className={styles.heading}>Pocket Notes</h1>
       </header>
-      <div className={styles.notesFetchContainer}>
-        {groups &&
-          groups.map((group, index) => (
-            <div className={styles.notesFetchComponent} key={index}>
-              <NotesFetchComponent
-                groupId={group._id}
-                groupName={group.groupName}
-                groupColor={group.groupColor}
-                shortForm={getShortForm(group.groupName)}
-              />
-            </div>
+
+      {groups && (
+        <div className={styles.notesFetchContainer}>
+          {groups.map((group) => (
+            <NotesFetchComponent
+              key={group._id}
+              groupId={group._id}
+              groupName={group.groupName}
+              groupColor={group.groupColor}
+              shortForm={getShortForm(group.groupName)}
+            />
           ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

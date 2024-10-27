@@ -13,15 +13,17 @@ const MainPage = () => {
   const [createdNewGroup, setCreatedNewGroup] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-  const [refreshPage,setRefreshPage] = useState(false);
-  const [selectedNote,setSelectedNote] = useState(null);
-  const [groupId,setGroupId] = useState(null);
-  const [notes, setNotes] = useState([{
-    text:"",
-    date:"",
-    time:"",
-  }]);
-    
+  const [refreshPage, setRefreshPage] = useState(false);
+  const [selectedNote, setSelectedNote] = useState(null);
+  const [groupId, setGroupId] = useState(null);
+  const [notes, setNotes] = useState([
+    {
+      text: "",
+      date: "",
+      time: "",
+    },
+  ]);
+
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const handleClick = () => {
@@ -47,17 +49,17 @@ const MainPage = () => {
         refreshPage,
         setRefreshPage,
         selectedNote,
-        setSelectedNote
+        setSelectedNote,
       }}
     >
-      <div className={styles.container}>
+      <div className = {styles.container}>
+        
         {!selectedGroup && isMobile && (
           <>
             <GroupList
-              className={styles.groupList}
               createdNewGroup={createdNewGroup}
             />
-            <button className={styles.addNotes} onClick={handleClick}>
+            <button className={styles.addNotesGroup} onClick={handleClick}>
               +
             </button>
           </>
@@ -65,19 +67,17 @@ const MainPage = () => {
         {!isMobile && (
           <div className={styles.groupList}>
             <GroupList createdNewGroup={createdNewGroup} />
-            <button className={styles.addNotes} onClick={handleClick}>
+            <button className={styles.addNotesGroup} onClick={handleClick}>
               +
             </button>
           </div>
         )}
-
+        
         <ChatBox />
-
+        
+        
         {showAddNotes && (
-          <div
-            className={styles.overlay}
-            onClick={handleOverlayClick}
-          >
+          <div className={styles.overlay} onClick={handleOverlayClick}>
             <div
               className={styles.addNotesComponent}
               onClick={(e) => e.stopPropagation()} // Stop click propagation

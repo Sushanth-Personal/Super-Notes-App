@@ -25,7 +25,7 @@ const NotesWidget = ({ id, note, date, time }) => {
 
   return (
     <div>
-      {selectedGroup && note && (
+      {selectedGroup && notes && (
         <article
           className={styles.container}
           onKeyDown={handleKeyDown}

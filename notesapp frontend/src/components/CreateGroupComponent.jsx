@@ -15,7 +15,7 @@ const colors = [
 ]; // Add more colors if needed
 
 const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
-  const {  setSelectedGroup, setSelectedColor ,setRefreshPage} =
+  const {  setSelectedGroup, setSelectedColor ,setRefreshPage,setNotes} =
     useContext(Context);
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
     useState(false);
@@ -49,6 +49,7 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
       setRefreshPage(true);
       setShowAddNotes(false);
       setCreatedNewGroup(true);
+      setNotes([]);
      
       
     } catch (error) {

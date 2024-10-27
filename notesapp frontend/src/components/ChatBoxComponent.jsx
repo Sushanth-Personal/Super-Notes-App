@@ -1,27 +1,27 @@
 import TextInputComponent from "./TextInputComponent";
 import styles from "./styles/ChatBoxComponent.module.css";
 import NotesWidget from "./NotesWidget";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { getShortForm } from "./GroupListComponent";
 import { Context } from "../pages/mainpage";
 import { useMediaQuery } from "react-responsive";
 import { getNotes } from "../api/notesAPI";
 
 const ChatBox = () => {
-
-  const { selectedGroup, selectedColor, setSelectedGroup, notes,groupId} =
+  const { selectedGroup, setSelectedGroup, selectedColor, notes } =
     useContext(Context);
-  
+
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-  
+
   const [isNoteSubmitted, setIsNoteSubmitted] = useState(false);
 
-  
+  const handleBackButton = () => {
+    setSelectedGroup(null);
+  };
+
   return (
     <div className={styles.container}>
-
-      {
-      selectedGroup && !isMobile && (
+      {selectedGroup && !isMobile && (
         <header>
           <div
             style={{ backgroundColor: selectedColor }}
@@ -35,12 +35,17 @@ const ChatBox = () => {
 
       {selectedGroup && isMobile && (
         <header>
-          <img
-            className={styles.backButton}
-            src="./backButton.png"
-            alt="back"
-    
-          />
+          <div
+            className={styles.backButtonContainer}
+            tabIndex="0"
+            onClick={handleBackButton}
+          >
+            <img
+              className={styles.backButton}
+              src="./backButton.png"
+              alt="back"
+            />
+          </div>
           <div
             style={{ backgroundColor: selectedColor }}
             className={styles.shortForm}
@@ -74,10 +79,10 @@ const ChatBox = () => {
           {selectedGroup && (
             <>
               <div className={styles.notesDisplay}>
-
                 {notes.map((note) => (
                   <div key={note.id}>
                     <NotesWidget
+                      id={note.id}
                       note={note.text}
                       date={note.date}
                       time={note.time}
@@ -98,10 +103,11 @@ const ChatBox = () => {
       {isMobile && selectedGroup && (
         <>
           <div className={styles.notesDisplay}>
-            {filteredNotes.map((note) => (
+            {notes.map((note) => (
               <div key={note.id}>
                 <NotesWidget
-                  note={note.description}
+                  id={note.id}
+                  note={note.text}
                   date={note.date}
                   time={note.time}
                 />
@@ -111,8 +117,6 @@ const ChatBox = () => {
 
           <div className={styles.TextInputComponent}>
             <TextInputComponent
-              setNotes={setNotes}
-              selectedGroup={selectedGroup}
               setIsNoteSubmitted={setIsNoteSubmitted}
             />
           </div>

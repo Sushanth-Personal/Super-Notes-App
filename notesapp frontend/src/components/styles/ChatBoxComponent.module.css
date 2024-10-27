@@ -135,7 +135,13 @@
     height: 100%;
     width: 100%;
   }
-
+.backButtonContainer{
+  width:30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   .container header {
     min-height: 98px;
     width: 100%;

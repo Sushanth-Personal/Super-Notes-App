@@ -14,7 +14,7 @@ const MainPage = () => {
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [refreshPage,setRefreshPage] = useState(false);
-  
+  const [selectedNote,setSelectedNote] = useState(null);
   const [groupId,setGroupId] = useState(null);
   const [notes, setNotes] = useState([{
     text:"",
@@ -45,7 +45,9 @@ const MainPage = () => {
         notes,
         setNotes,
         refreshPage,
-        setRefreshPage
+        setRefreshPage,
+        selectedNote,
+        setSelectedNote
       }}
     >
       <div className={styles.container}>

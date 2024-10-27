@@ -45,8 +45,7 @@ export const getNotes = async (id) => {
 
   export const addNotes = async(id,notes)=>{
     try{
-        const response=await axios.put(`http://localhost:5000/api/notes/${id}`,{notes});
-        console.log("Successfully added the note: ",response.data);
+        await axios.put(`http://localhost:5000/api/notes/${id}`,{notes});
     }
     catch(error){
         console.error("Error adding notes: ",error);

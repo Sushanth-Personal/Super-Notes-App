@@ -12,6 +12,10 @@
     font-family: 'Roboto';
     padding:28px 24px;
   }
+  .container:hover {
+    background-color: #f0f0f0; /* Slightly off-white for a subtle highlight */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
   .descriptionText {
     white-space: pre-wrap;
   }
@@ -59,6 +63,10 @@
       font-family: 'Roboto';
       padding:28px 13px;
     }
+    .container:hover {
+      background-color: #f0f0f0; /* Slightly off-white for a subtle highlight */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  }
     .descriptionText {
       white-space: pre-wrap;
     }

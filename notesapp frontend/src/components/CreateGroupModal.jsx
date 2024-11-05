@@ -1,9 +1,10 @@
-import { useState, useContext } from "react";
-import styles from "./styles/CreateGroupComponent.module.css";
+import { useState } from "react";
+import styles from "./styles/CreateGroupModal.module.css";
 import PropTypes from "prop-types";
-import { Context } from "../pages/mainpage";
-import { getShortForm } from "./GroupListComponent";
-import { createNotesGroup, addNotes } from "../api/notesAPI.js";
+import { useNotesContext } from "../Contexts/NotesContext.jsx";
+import { useUserContext } from "../Contexts/UserContext";
+import { getShortForm } from "./GroupListComponent.jsx";
+import { createNotesGroup } from "../api/notesAPI.js";
 
 const colors = [
   "#B38BFA",
@@ -14,9 +15,17 @@ const colors = [
   "#6691FF",
 ]; // Add more colors if needed
 
-const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
-  const {  setSelectedGroup, setSelectedColor ,setRefreshPage,setNotes} =
-    useContext(Context);
+const CreateGroupModal = () => {
+  const { userId, setUserData, userData } = useUserContext();
+
+  const {
+    setSelectedGroup,
+    setSelectedColor,
+    setNotes,
+    setGroupId,
+    setShowAddNotes,
+  } = useNotesContext();
+
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
     useState(false);
   const [groupName, setGroupName] = useState("");
@@ -29,29 +38,43 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
       setErrorMessage("Please fill in all fields.");
       return;
     }
-
+    if (
+      userData.groups.some(
+        (group) =>
+          group.groupName.toLowerCase() ===
+          groupName.trim().toLowerCase()
+      )
+    ) {
+      setErrorMessage("Group name already exists.");
+      return;
+    }
     setErrorMessage("");
 
     try {
       const newGroup = {
+        userId: userId,
         groupName: groupName.trim(),
         groupColor,
         shortForm: getShortForm(groupName.trim()),
+        notes: [],
       };
-      const createdGroup = await createNotesGroup(
+      const userData = await createNotesGroup(
+        newGroup.userId,
         newGroup.groupName,
         newGroup.groupColor,
         newGroup.shortForm
       );
-      console.log("This is the group created ",createdGroup)
-      setSelectedGroup(createdGroup.groupName);
-      setSelectedColor(createdGroup.groupColor);
-      setRefreshPage(true);
-      setShowAddNotes(false);
-      setCreatedNewGroup(true);
+      setUserData(userData);
       setNotes([]);
-     
-      
+      setShowAddNotes(false);
+      setGroupId(userData.groups.length);
+      console.log("userData", userData);
+      setSelectedGroup(
+        userData.groups[userData.groups.length - 1].groupName
+      );
+      setSelectedColor(
+        userData.groups[userData.groups.length - 1].groupColor
+      );
     } catch (error) {
       setErrorMessage("Error creating group: ", error);
     } finally {
@@ -59,9 +82,6 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
     }
   };
 
-  
-
-  
 
   return (
     <div
@@ -163,11 +183,8 @@ const CreateGroup = ({ setShowAddNotes, setCreatedNewGroup }) => {
   );
 };
 
-CreateGroup.propTypes = {
-  setGroupColor: PropTypes.func.isRequired,
-  setGroupName: PropTypes.func.isRequired,
+CreateGroupModal.propTypes = {
   setShowAddNotes: PropTypes.func.isRequired,
-  setCreatedNewGroup: PropTypes.func.isRequired,
 };
 
-export default CreateGroup;
+export default CreateGroupModal;

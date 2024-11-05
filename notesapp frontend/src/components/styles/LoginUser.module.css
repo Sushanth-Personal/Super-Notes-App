@@ -1,0 +1,19 @@
+.window{
+    position:absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: grey;
+    z-index: 2;
+
+}
+
+.container{
+
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    background-color: aliceblue;
+}
+

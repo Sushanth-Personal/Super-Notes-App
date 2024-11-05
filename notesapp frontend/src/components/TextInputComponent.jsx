@@ -1,19 +1,19 @@
 import styles from "./styles/TextInputComponent.module.css";
 import formatDateAndTime from "../utils/formatDateAndTime";
-import { useState, useContext } from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 import GreyButton from "../assets/GreyButton.png";
 import BlueButton from "../assets/BlueButton.png";
-import { Context } from "../pages/mainpage";
+import {useUserContext} from "../Contexts/UserContext";
+import {useNotesContext} from "../Contexts/NotesContext";
 import { addNotes } from "../api/notesAPI";
-const TextInputComponent = ({ setIsNoteSubmitted }) => {
+const TextInputComponent = () => {
   const [description, setDescription] = useState("");
-  const { groupId, notes, setNotes } = useContext(Context);
+  const { groupId, notes, setNotes } = useNotesContext();
+  const {userId} = useUserContext();
 
   const handleClick = () => {
     if (description.trim() !== "") {
       addCurrentNote();
-      setIsNoteSubmitted(true);
       setDescription(""); // Clear the input field after adding the note
     }
   };
@@ -30,7 +30,15 @@ const TextInputComponent = ({ setIsNoteSubmitted }) => {
 
     const updatedNotes = [...existingNotes, newNote];
     setNotes(updatedNotes);
-    addNotes(groupId, updatedNotes);
+
+    const updatingNotes = async () => {
+      try {
+        await addNotes(userId, groupId, updatedNotes);
+      } catch (error) {
+        console.error("Error adding notes:", error);
+      }
+    };
+    updatingNotes();
   };
 
   const handleChange = (e) => {
@@ -58,11 +66,6 @@ const TextInputComponent = ({ setIsNoteSubmitted }) => {
       </button>
     </div>
   );
-};
-
-TextInputComponent.propTypes = {
-  setNotes: PropTypes.func.isRequired,
-  setIsNoteSubmitted: PropTypes.func.isRequired,
 };
 
 export default TextInputComponent;

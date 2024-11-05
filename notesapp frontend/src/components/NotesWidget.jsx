@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles/NotesWidget.module.css";
-import { Context } from "../pages/mainpage";
+import {useNotesContext} from "../Contexts/NotesContext";
 import { addNotes } from "../api/notesAPI";
 const NotesWidget = ({ id, note, date, time }) => {
   const {
@@ -9,7 +8,7 @@ const NotesWidget = ({ id, note, date, time }) => {
     notes,
     setNotes,
     groupId,
-  } = useContext(Context);
+  } = useNotesContext();
 
   const deleteCurrentNote = () => {
     const updatedNotes = notes.filter((note) => note.id !== id);

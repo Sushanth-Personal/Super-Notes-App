@@ -1,24 +1,36 @@
-import { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
-import NotesFetchComponent from "./NotesFetchComponent";
+import { useState, useEffect } from "react";
+import NotesGroupButton from "./NotesGroupButton";
 import styles from "./styles/GroupListComponent.module.css";
-import { getNotes } from "../api/notesAPI";
-import { Context } from "../pages/mainpage";
-const GroupList = ({ createdNewGroup }) => {
+import { useUserContext } from "../Contexts/UserContext";
+import { getGroups } from "../api/notesAPI";
+const GroupList = () => {
   const [groups, setGroups] = useState([]);
-  const { refreshPage, setRefreshPage } = useContext(Context);
+  const { setIsAuthenticated, setIsLoginMode, isAuthenticated,setUserId } =
+    useUserContext();
 
   useEffect(() => {
-    const fetchNotes = async () => {
-      const notes = await getNotes();
-      if (notes) {
-        console.log("Fetched Notes:", notes);
-        setGroups(notes);
+    const fetchUserData = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        setUserId(userId);
+        if (userId) {
+          const groups = await getGroups(userId);
+          if (!groups) {
+            setIsAuthenticated(false);
+            setIsLoginMode(true);
+          } else {
+            console.log("grooups", groups);
+            setGroups(groups);
+            setIsAuthenticated(true);
+          }
+        } else setIsAuthenticated(false);
+      } catch (error) {
+        console.error("Error:", error);
       }
     };
-    setRefreshPage(false);
-    fetchNotes();
-  }, [createdNewGroup, refreshPage]);
+
+    fetchUserData();
+  }, [isAuthenticated]);
 
   return (
     <div className={styles.container} id="group-list-container">
@@ -29,9 +41,9 @@ const GroupList = ({ createdNewGroup }) => {
       {groups && (
         <div className={styles.notesFetchContainer}>
           {groups.map((group) => (
-            <NotesFetchComponent
-              key={group._id}
-              groupId={group._id}
+            <NotesGroupButton
+              key={group.groupId}
+              groupId={group.groupId}
               groupName={group.groupName}
               groupColor={group.groupColor}
               shortForm={getShortForm(group.groupName)}
@@ -56,14 +68,6 @@ function getShortForm(groupName) {
     }
   }
 }
-
-GroupList.propTypes = {
-  createdNewGroup: PropTypes.bool.isRequired,
-};
-
-GroupList.defaultProps = {
-  createdNewGroup: false,
-};
 
 export default GroupList;
 export { getShortForm };

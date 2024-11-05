@@ -1,0 +1,11 @@
+{   "version": "0.2.0",
+    "configurations": [
+    {
+        "type": "chrome",
+        "name": "Launch Chrome",
+        "request": "launch",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}/notesapp frontend/src/main.jsx",
+    }
+    ]
+}

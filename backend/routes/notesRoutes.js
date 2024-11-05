@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const {getNotes,createNotes,updateNotes,deleteNotes} = require('../controllers/notesController.js');
+const {getNotes,createNotes,updateNotes,deleteNotes, getGroups} = require('../controllers/notesController.js');
 
-router.get('/notes/:id?',getNotes);
-router.post('/notes/',createNotes);
-router.put('/notes/:id',updateNotes);
+router.get('/groups/:userId',getGroups);
+router.get('/notes/:userId/:groupId',getNotes);
+router.post('/notes',createNotes);
+router.put('/notes/:userId/:groupId',updateNotes);
 router.delete('/notes/:id',deleteNotes);
 module.exports = router;

@@ -1,3 +1,4 @@
+
 @media screen and (min-width: 768.5px) {
   .container {
     background-color: white;
@@ -11,29 +12,61 @@
     overflow-x: hidden;
     width: 100%;
     position: relative;
+    font-family: 'Roboto';
     
   }
 
   .title {
-    height: 154px;
-    width: 28%;
+    max-height: 154px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
+    left:0;
+    top:0;
     z-index: 1;
     background-color: white;
+
   }
  
   .notesFetchContainer {
     margin-top: 154px;
     width:100%;
+    font-family: 'Roboto';
   }
 
   .heading {
-    margin-top: 70px;
-    font-family: "Roboto";
+    /* margin-top: 70px; */
     font-size: 35px;
-    font-weight: 500;
+    font-weight: 800;
     letter-spacing: 0.02em;
-    margin-left: 90px;
+    /* margin-left: 90px; */
+  
+  }
+
+  .addNotesGroup {
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 24px;
+    left:20%;
+    z-index: 1;
+    background-color: #16008b;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 45px; /* Adjusted for better balance */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    padding-bottom: 4px;
+    line-height: 1; /* Ensures vertical alignment */
+}
+
+  .addNotesGroup:hover {
+    background-color: #2404d7; /* darker green on hover */
   }
 }
 @media screen and (max-width: 768.5px) {
@@ -49,7 +82,8 @@
   }
 
   .title {
-    height: 14%;
+    height: 100%;
+    max-height: 154px;
     width:100%;
     position: fixed;
     z-index: 1;
@@ -67,10 +101,46 @@
 
   .heading {
     margin-top: 50px;
-    font-family: "Roboto";
     font-size: 35px;
     font-weight: 500;
     letter-spacing: 0.02em;
     margin-left: 46px;
+  }
+
+  .addNotesGroup {
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 24px;
+    left:90%;
+    z-index: 1;
+    background-color: #16008b;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 45px; /* Adjusted for better balance */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    padding-bottom: 10px;
+    line-height: 1; /* Ensures vertical alignment */
+}
+  .addNotes:hover {
+    background-color: #2404d7; /* darker green on hover */
+  }
+
+}
+
+@media screen and (max-width: 1200px) and (min-width: 990px) {
+  .addNotesGroup {
+    left: 25%;
+  }
+}
+
+
+@media screen and (max-width: 990px) and (min-width: 768.5px) {
+  .addNotesGroup {
+    left: 35%;
   }
 }

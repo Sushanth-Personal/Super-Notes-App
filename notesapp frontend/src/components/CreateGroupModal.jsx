@@ -16,7 +16,8 @@ const colors = [
 ]; // Add more colors if needed
 
 const CreateGroupModal = () => {
-  const { userId, setUserData, userData } = useUserContext();
+  const { userId } = useUserContext();
+  const { groups, setGroups } = useNotesContext();
 
   const {
     setSelectedGroup,
@@ -24,6 +25,7 @@ const CreateGroupModal = () => {
     setNotes,
     setGroupId,
     setShowAddNotes,
+    
   } = useNotesContext();
 
   const [createGroupButtonClicked, setCreateGroupButtonClicked] =
@@ -33,13 +35,15 @@ const CreateGroupModal = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleCreateGroup = async () => {
+
     setCreateGroupButtonClicked(true);
     if (!groupName.trim() || !groupColor) {
       setErrorMessage("Please fill in all fields.");
       return;
     }
+    console.log("groups type", typeof groups);
     if (
-      userData.groups.some(
+      groups.some(
         (group) =>
           group.groupName.toLowerCase() ===
           groupName.trim().toLowerCase()
@@ -64,16 +68,16 @@ const CreateGroupModal = () => {
         newGroup.groupColor,
         newGroup.shortForm
       );
-      setUserData(userData);
+      setGroups([...groups, newGroup]);
+      const newGroups = [...groups, newGroup];
       setNotes([]);
       setShowAddNotes(false);
       setGroupId(userData.groups.length);
-      console.log("userData", userData);
       setSelectedGroup(
-        userData.groups[userData.groups.length - 1].groupName
+        newGroups[newGroups.length - 1].groupName
       );
       setSelectedColor(
-        userData.groups[userData.groups.length - 1].groupColor
+        groups[groups.length - 1].groupColor
       );
     } catch (error) {
       setErrorMessage("Error creating group: ", error);

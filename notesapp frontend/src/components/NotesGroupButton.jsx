@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styles from "./styles/NotesGroupButton.module.css";
 import { useNotesContext } from "../Contexts/NotesContext";
-import {useUserContext} from "../Contexts/UserContext";
+import { useUserContext } from "../Contexts/UserContext";
 import { useEffect, useState } from "react";
 import { getNotes, deleteNotes } from "../api/notesAPI";
 
@@ -11,25 +11,23 @@ const NotesGroupButton = ({
   groupColor,
   shortForm,
 }) => {
-
-
   const {
     selectedGroup,
     setSelectedGroup,
     setSelectedColor,
     setNotes,
     setGroupId,
+    setGroups
   } = useNotesContext();
 
-  const{userId , setUserData} = useUserContext();
+  const { userId} = useUserContext();
   const [notesFetch, setNotesFetch] = useState(false);
 
   /**
-   * Handles the click event on the group button. 
+   * Handles the click event on the group button.
    * Sets notesFetch to true and set the selected group ID to the one of the button.
    */
   const handleClick = () => {
-    console.log("groupId", groupId);
     setNotesFetch(true);
     setGroupId(groupId);
   };
@@ -38,8 +36,7 @@ const NotesGroupButton = ({
     if (notesFetch) {
       const fetchNotes = async () => {
         try {
-          const notes = await getNotes(userId,groupId);
-          console.log("user", groupId, notes);
+          const notes = await getNotes(userId, groupId);
           setNotes(notes);
           // setNotes(user.groups[groupId-1].notes);
         } catch (err) {
@@ -55,8 +52,19 @@ const NotesGroupButton = ({
 
   const handleKeyDown = (event) => {
     if (event.key === "Delete") {
-      deleteNotes(groupId);
-      setSelectedGroup(null);
+      const deleteTheGroup = async () => {
+        try {
+          const response = await deleteNotes(groupId);
+          if (response.status === 200) {
+            setSelectedGroup(null);
+            setGroups([]);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      deleteTheGroup();
     }
   };
 

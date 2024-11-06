@@ -10,6 +10,7 @@ const [showAddNotes , setShowAddNotes] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null);
   const [groupId, setGroupId] = useState(null);
   const [notes, setNotes] = useState([]);
+  const [groups, setGroups] = useState([]);
   return (
     <NotesContext.Provider
       value={{
@@ -24,7 +25,9 @@ const [showAddNotes , setShowAddNotes] = useState(false);
         groupId,
         setGroupId,
         showAddNotes,
-        setShowAddNotes
+        setShowAddNotes,
+        groups,
+        setGroups,
       }}
     >
       {children}

@@ -19,7 +19,6 @@ const TextInputComponent = () => {
   };
 
   const addCurrentNote = () => {
-    console.log(notes.length);
     const existingNotes = notes;
     const newNote = {
       id: existingNotes.length + 1,

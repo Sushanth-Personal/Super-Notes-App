@@ -1,4 +1,11 @@
 /* mainpage.module.css */
+@font-face {
+  font-family: 'Roboto'; /* Replace with your font name */
+  src: url('../../fonts/Roboto-Bold.ttf') format('truetype'); /* Adjust the path based on your directory structure */
+  font-weight: normal; /* Specify the font weight if needed */
+  font-style: normal; /* Specify the font style if needed */
+}
+
 #root,
 * {
   margin: 0;
@@ -15,34 +22,15 @@
   }
 
 
-  .addNotesGroup {
-    width: 93px;
-    height: 93px;
-    position: absolute; /* fixed position */
-    bottom: 24px; /* 20px from the bottom */
-    right: 25px; /* 20px from the right */
-    z-index: 1; /* bring to front */
-    background-color: #16008b; /* green background */
-    color: #fff; /* white text */
-    padding: 10px;
-    border-radius: 50%; /* circular shape */
-    cursor: pointer; /* pointer cursor */
-    font-size: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+ 
 
-  .addNotesGroup:hover {
-    background-color: #2404d7; /* darker green on hover */
-  }
-
- .groupList{
-  width: 28%;
+ /* .groupList{
+  width: 100%;
+  max-width: 400px;
   position: relative;
- }
+ } */
 .chatBox{
-  width: 72%;
+  width: 100%;
 }
   .overlay {
     position: fixed;
@@ -83,28 +71,7 @@
     position: relative;
   }
 
-  .addNotesGroup {
-    position: absolute;
-    width: 75px;
-    height: 75px;
-    font-size: 65px;
-    right: 25px;
-    bottom: 24px;
-    z-index: 1; /* bring to front */
-    background-color: #16008b; /* green background */
-    color: #fff; /* white text */
-    padding: 10px;
-    border-radius: 50%; /* circular shape */
-    cursor: pointer; /* pointer cursor */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .addNotes:hover {
-    background-color: #2404d7; /* darker green on hover */
-  }
-
+  
   .chatBox {
     width: 100%;
     background-color: #fff; /* white background */

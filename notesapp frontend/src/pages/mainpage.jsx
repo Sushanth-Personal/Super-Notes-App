@@ -1,10 +1,5 @@
-
-import {
-  useUserContext
-} from "../Contexts/UserContext";
-import {
-  useNotesContext
-} from "../Contexts/NotesContext";
+import { useUserContext } from "../Contexts/UserContext";
+import { useNotesContext } from "../Contexts/NotesContext";
 import styles from "./styles/mainpage.module.css";
 import CreateGroupModal from "../components/CreateGroupModal";
 import ChatBox from "../components/ChatBoxComponent";
@@ -14,7 +9,6 @@ import { useMediaQuery } from "react-responsive";
 import RegisterUser from "../components/RegisterUser";
 import LoginUser from "../components/LoginUser";
 
-
 /**
  * The main page component for the NotesApp.
  * Handles conditional rendering of the Login/Register component,
@@ -23,70 +17,49 @@ import LoginUser from "../components/LoginUser";
  */
 const MainPage = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-// Extract the authentication context for conditional rendering
-const { isAuthenticated, isLoginMode } =
-useUserContext();
-const { showAddNotes, setShowAddNotes, selectedGroup } =
-useNotesContext();
-  const createNewGroupButton = () => {
-    console.log("ShowAddNotes", showAddNotes);
-    setShowAddNotes(true);
-  };
+  // Extract the authentication context for conditional rendering
+  const { isLoginMode, isRegisterMode } = useUserContext();
+  const { showAddNotes, setShowAddNotes, selectedGroup } =
+    useNotesContext();
+ 
 
   const handleOverlayClick = () => {
     setShowAddNotes(false);
   };
 
-
   return (
- 
-      <div className={styles.container}>
-        {/* Wrap LoginUser and RegisterUser with UserProvider */}
-    
-          {/* (isLoginMode ? <LoginUser /> : <RegisterUser />) */}
-         { isLoginMode && <LoginUser />}
-          {/* Other components that do not need access to UserProvider */}
-          {!selectedGroup && isMobile && (
-            <>
-              <GroupList />
-              <button
-                className={styles.addNotesGroup}
-                onClick={createNewGroupButton}
-              >
-                +
-              </button>
-            </>
-          )}
-          {!isMobile && (
-            <div className={styles.groupList}>
-              <GroupList />
-              <button
-                className={styles.addNotesGroup}
-                onClick={createNewGroupButton}
-              >
-                +
-              </button>
-            </div>
-          )}
+    <div className={styles.container}>
+      {/* Wrap LoginUser and RegisterUser with UserProvider */}
 
-          <ChatBox />
+      {/* (isLoginMode ? <LoginUser /> : <RegisterUser />) */}
+      {isLoginMode && <LoginUser />}
+      {isRegisterMode && <RegisterUser />}
+      {/* Other components that do not need access to UserProvider */}
+      {!selectedGroup && isMobile && (
+        <>
+          <GroupList />
+         
+        </>
+      )}
+      {!isMobile && (
+        <div className={`col-lg-4 col-md-5 col-xl-3`}>
+          <GroupList />
+        </div>
+      )}
 
-          {showAddNotes &&  (
-            <div
-              className={styles.overlay}
-              onClick={handleOverlayClick}
-            >
-              <div
-                className={styles.addNotesComponent}
-                onClick={(e) => e.stopPropagation()} // Stop click propagation
-              >
-                <CreateGroupModal/>
-              </div>
-            </div>
-          )}
-   
-      </div>
+      <ChatBox />
 
+      {showAddNotes && (
+        <div className={styles.overlay} onClick={handleOverlayClick}>
+          <div
+            className={styles.addNotesComponent}
+            onClick={(e) => e.stopPropagation()} // Stop click propagation
+          >
+            <CreateGroupModal />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

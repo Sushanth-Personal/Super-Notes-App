@@ -11,7 +11,7 @@ const ChatBox = () => {
   const { selectedGroup, setSelectedGroup, selectedColor, notes } =
     useNotesContext();
 
-  const { userId } = useUserContext();
+  const { setIsAuthenticated, setIsLoginMode } = useUserContext();
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [chatBoxVisible, setChatBoxVisible] = useState(false);
@@ -19,8 +19,14 @@ const ChatBox = () => {
     setSelectedGroup(null);
   };
 
+  const handleSignOut = () => {
+    localStorage.clear();
+    setIsAuthenticated(false);
+    setIsLoginMode(true);
+    window.location.reload();
+  };
+
   useEffect(() => {
-    console.log("currentnotes", notes);
     if (isMobile && !selectedGroup) {
       setChatBoxVisible(false);
     } else if (isMobile && selectedGroup) {
@@ -30,31 +36,32 @@ const ChatBox = () => {
     if (!isMobile) {
       setChatBoxVisible(true);
     }
-    console.log("chatBox", chatBoxVisible);
   }, [isMobile, selectedGroup]);
-
-  useEffect(() => {
-    console.log("notes", notes);
-  }, [isMobile,userId,selectedGroup,notes]);
 
   return (
     <>
       {chatBoxVisible && (
         <div className={styles.container} id="chatbox-container">
           {selectedGroup && !isMobile && (
-            <header>
+            <header className="d-flex align-items-center justify-content-between p-3">
               <div
                 style={{ backgroundColor: selectedColor }}
-                className={styles.shortForm}
+                className={`${styles.shortForm} me-2`}
               >
                 {getShortForm(selectedGroup)}
               </div>
-              <p className={styles.groupName}>{selectedGroup}</p>
+              <p className="flex-grow-1 m-0">{selectedGroup}</p>
+              <button
+                className="btn btn-primary me-3"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </button>
             </header>
           )}
 
           {selectedGroup && isMobile && (
-            <header>
+            <header className = {`d-flex align-items-center justify-content-between p-3`}>
               <div
                 className={styles.backButtonContainer}
                 tabIndex="0"
@@ -72,7 +79,13 @@ const ChatBox = () => {
               >
                 {getShortForm(selectedGroup)}
               </div>
-              <p className={styles.groupName}>{selectedGroup}</p>
+              <p className={`flex-grow-1 m-0 ms-3 ${styles.groupName}`}>{selectedGroup}</p>
+              <button
+                className="btn btn-primary me-3"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </button>
             </header>
           )}
 
@@ -80,6 +93,14 @@ const ChatBox = () => {
             <>
               {!selectedGroup && (
                 <div className={styles.mainContainer}>
+                  <div className={`d-flex justify-content-end w-100`}>
+                    <button
+                      className="btn btn-primary me-3 mt-3"
+                      onClick={handleSignOut}
+                    >
+                      Sign Out
+                    </button>
+                  </div>
                   <main>
                     <img src="./Mainpage.png" alt="image" />
                     <h1>Pocket Notes</h1>
@@ -99,7 +120,6 @@ const ChatBox = () => {
           )}
           {selectedGroup && (
             <>
-            {console.log("notes", notes)}
               <div className={styles.notesDisplay}>
                 {notes.map((note) => (
                   <div key={note.id}>

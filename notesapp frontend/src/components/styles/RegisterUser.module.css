@@ -1,0 +1,5 @@
+.window{
+    position:absolute;
+    background-color: grey;
+    z-index: 4;
+}

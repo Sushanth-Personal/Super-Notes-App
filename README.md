@@ -5,10 +5,13 @@ A mobile-responsive, full-stack notes application built with React, Node.js, Exp
 Check out the live demo here: Pocket Notes App on Render
 
 # 📸 Screenshots
+
 **Login Screen:**
+
 ![image](https://github.com/user-attachments/assets/fe2acce1-77a0-44fb-a26a-448c0a755159)
 
 **Main Screen**
+
 ![image](https://github.com/user-attachments/assets/09f9508f-4c88-4e43-8080-bc50307e8064)
 
 # 🌟 Features

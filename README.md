@@ -47,30 +47,26 @@ This project enhanced my understanding of:
 # 🚀 Getting Started
 Clone the Repository:
 
-bash
 Copy code
+
 git clone https://github.com/Sushanth-Personal/Pocket-Notes-App.git
-Install Dependencies:
 
-bash
-Copy code
-cd Pocket-Notes-App
+**Start the Server:**
 
-Start the Server:
+**Start Backend**
 
-bash
-Copy code
-# Start Backend
 cd backend
-npm run start
-Launch Frontend:
 
-bash
-Copy code
-# Start Frontend
-cd frontend
-npm start
-Open your browser to http://localhost:3000 and start using Pocket Notes App!
+npm run dev
+
+**Launch Frontend:**
+
+** Start Frontend**
+
+cd notesapp frontend
+
+npm run dev
+
 
 💡 Challenges and Solutions
 Token Expiry Management: Ensured seamless reauthentication by implementing a refresh token system, allowing users to stay logged in without frequent logins.

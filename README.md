@@ -6,7 +6,7 @@ Check out the live demo here: Pocket Notes App on Render
 
 # 📸 Screenshots
 **Login Screen:**
-
+![image](https://github.com/user-attachments/assets/fe2acce1-77a0-44fb-a26a-448c0a755159)
 
 **Main Screen**
 ![image](https://github.com/user-attachments/assets/09f9508f-4c88-4e43-8080-bc50307e8064)
@@ -21,6 +21,8 @@ Check out the live demo here: Pocket Notes App on Render
 **RESTful API:** Backend structured for reusability, allowing easy integration with other authentication-based applications.
 
 **MongoDB Aggregation Pipelines:** Efficiently filters and processes data, enhancing performance.
+
+**Bootstrap Styling:** Provides a clean, modern look and responsive design for all UI components.
 
 # 🛠️ Technologies Used
 **Frontend:** React.js for a responsive and dynamic user interface.
@@ -42,6 +44,8 @@ This project enhanced my understanding of:
 
 **RESTful API Design:** Crafting modular backend services that are easily reusable in various applications.
 
+**Bootstrap for Styling:** Quickly creating a polished, responsive UI with Bootstrap components and utility classes.
+
 **Full-Stack Deployment:** Separately deploying frontend and backend services and managing inter-service communication on Render.com.
 
 # 🚀 Getting Started
@@ -61,14 +65,14 @@ npm run dev
 
 **Launch Frontend:**
 
-** Start Frontend**
-
 cd notesapp frontend
 
 npm run dev
 
 
 💡 Challenges and Solutions
-Token Expiry Management: Ensured seamless reauthentication by implementing a refresh token system, allowing users to stay logged in without frequent logins.
+**Token Expiry Management:** Ensured seamless reauthentication by implementing a refresh token system, allowing users to stay logged in without frequent logins.
 
-Efficient Data Querying: Used MongoDB aggregation pipelines to filter and retrieve notes quickly, handling large data volumes effectively.
+**Efficient Data Querying:** Used MongoDB aggregation pipelines to filter and retrieve notes quickly, handling large data volumes effectively.
+
+**Styling Consistency:** Used Bootstrap’s grid and component system to maintain a uniform look across all pages, improving user experience.

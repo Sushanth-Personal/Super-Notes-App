@@ -69,7 +69,7 @@
     background-color: #2404d7; /* darker green on hover */
   }
 }
-@media screen and (max-width: 768.5px) {
+@media screen and ((max-width: 768.5px)) {
   .container {
     position: relative;
     width: 100%;
@@ -112,7 +112,7 @@
     height: 80px;
     position: fixed;
     bottom: 24px;
-    left:90%;
+    left:85%;
     z-index: 1;
     background-color: #16008b;
     color: #fff;
@@ -144,3 +144,16 @@
     left: 35%;
   }
 }
+
+@media screen and (max-width: 990px) and (min-width: 768.5px) {
+  .addNotesGroup {
+    left: 35%;
+  }
+}
+
+/* @media screen and (max-width: 500px) {
+  .addNotesGroup {
+    left: 85%;
+  }
+  
+} */

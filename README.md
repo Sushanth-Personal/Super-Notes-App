@@ -9,7 +9,7 @@ Check out the live demo here: Pocket Notes App on Render
 
 
 **Main Screen**
-
+![image](https://github.com/user-attachments/assets/09f9508f-4c88-4e43-8080-bc50307e8064)
 
 # 🌟 Features
 **Mobile-Responsive Design:** A seamless experience across devices, with a focus on mobile usability.
